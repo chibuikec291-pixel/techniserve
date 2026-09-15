@@ -96,12 +96,14 @@ img {
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.375rem;
     font-weight: 800;
     color: var(--text-light);
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap; /* CRITICAL: Prevents "TECHNI SERVE" break */
+    flex-shrink: 0;      /* CRITICAL: Prevents logo from shrinking */
 }
 
 /* --- LOGO BADGE (Crossed Tools) --- */
@@ -115,6 +117,7 @@ img {
     background: rgba(37, 99, 235, 0.15);
     border-radius: var(--radius-sm);
     border: 1px solid rgba(37, 99, 235, 0.3);
+    flex-shrink: 0;
 }
 
 .logo-badge-img {
@@ -141,27 +144,32 @@ img {
     z-index: 1;
 }
 
-/* --- UPDATED NAVBAR LINKS --- */
+/* --- UPDATED NAVBAR LINKS (Optimized for Desktop) --- */
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 20px; /* Reduced from 32px to fit all items cleanly on desktop */
+    gap: 10px; /* Reduced to 10px to fit all 8 items on one line */
+    flex-wrap: nowrap; /* CRITICAL: Prevents wrapping to a second line */
+    flex-shrink: 1;
 }
 
 .nav-links a {
     color: var(--text-light);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.85rem; /* Reduced to 0.85rem to save horizontal space */
     opacity: 0.8;
+    white-space: nowrap; /* CRITICAL: Prevents text from breaking */
 }
 
 .nav-login {
     color: var(--text-light) !important;
     opacity: 0.9 !important;
-    padding: 10px 20px;
+    padding: 8px 16px; /* Tighter padding */
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-full);
     font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
 }
 
 .nav-login:hover {
@@ -180,11 +188,12 @@ img {
     background: var(--primary);
     color: white !important;
     opacity: 1 !important;
-    padding: 10px 24px;
+    padding: 8px 18px; /* Tighter padding */
     border-radius: var(--radius-full);
     font-weight: 600;
+    font-size: 0.85rem;
     box-shadow: var(--shadow-glow);
-    white-space: nowrap; /* Prevents text from breaking into two lines */
+    white-space: nowrap;
 }
 
 .nav-cta-primary:hover {
@@ -197,15 +206,16 @@ img {
     background: transparent;
     color: var(--primary) !important;
     opacity: 1 !important;
-    padding: 10px 20px;
+    padding: 8px 16px; /* Tighter padding */
     border: 2px solid var(--primary);
     border-radius: var(--radius-full);
     font-weight: 600;
-    white-space: nowrap; /* Prevents text from breaking into two lines */
+    font-size: 0.85rem;
+    white-space: nowrap;
 }
 
 .nav-cta-secondary:hover {
-    background: rgba(37, 99, 235, 0.1); /* Light blue tint on hover */
+    background: rgba(37, 99, 235, 0.1);
     transform: translateY(-2px);
 }
 
@@ -215,11 +225,13 @@ img {
     gap: 4px;
     color: var(--text-light) !important;
     opacity: 0.9 !important;
-    padding: 8px 16px;
+    padding: 6px 12px; /* Tighter padding */
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
     border: 1px solid rgba(37, 99, 235, 0.3);
     border-radius: var(--radius-full);
     font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
     transition: var(--transition-fast);
 }
 
@@ -235,6 +247,7 @@ img {
     border: none;
     color: var(--text-light);
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .menu-toggle svg {
@@ -483,15 +496,15 @@ img {
    ============================================ */
 @media (max-width: 768px) {
     .logo-badge-img {
-        height: 28px; /* Slightly smaller on mobile */
+        height: 28px; 
     }
     
     .logo {
-        gap: 8px; /* Reduce gap on mobile */
+        gap: 8px; 
     }
     
     .logo span {
-        font-size: 1.1rem; /* Slightly smaller text on mobile */
+        font-size: 1.1rem; 
     }
     
     .menu-toggle {
@@ -527,7 +540,7 @@ img {
    ============================================ */
 @media (max-width: 480px) {
     .logo-badge-img {
-        height: 24px; /* Even smaller for very small screens */
+        height: 24px; 
     }
     
     .logo {
@@ -535,7 +548,7 @@ img {
     }
     
     .logo span {
-        font-size: 1.35rem; /* Smaller text */
+        font-size: 1.35rem; 
     }
     
     .nav-container {
@@ -548,7 +561,7 @@ img {
    ============================================ */
 @media (min-width: 769px) {
     .logo-badge-img {
-        height: 36px; /* Slightly larger on tablet */
+        height: 36px; 
     }
     
     .logo span {
@@ -561,11 +574,11 @@ img {
    ============================================ */
 @media (min-width: 1024px) {
     .logo-badge-img {
-        height: 40px; /* Full size on desktop */
+        height: 40px; 
     }
     
     .logo span {
-        font-size: 1.375rem; /* Full size text */
+        font-size: 1.375rem; 
     }
     
     .nav-container {
@@ -578,6 +591,6 @@ img {
    ============================================ */
 @media (min-width: 1280px) {
     .logo-badge-img {
-        height: 42px; /* Slightly larger for big screens */
+        height: 42px; 
     }
 }
