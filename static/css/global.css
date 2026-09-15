@@ -1,4 +1,7 @@
-/* --- RESET & BASE --- */
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -39,7 +42,11 @@ img {
     color: var(--primary);
 }
 
-/* --- PRELOADER --- */
+
+/* =========================================================
+   PRELOADER
+   ========================================================= */
+
 #preloader {
     position: fixed;
     inset: 0;
@@ -59,17 +66,23 @@ img {
 .loader-ring {
     width: 50px;
     height: 50px;
-    border: 4px solid rgba(255,255,255,0.1);
+    border: 4px solid rgba(255, 255, 255, 0.1);
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-/* --- NAVBAR (Glassmorphism) --- */
+
+/* =========================================================
+   NAVBAR - GLASSMORPHISM
+   ========================================================= */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -78,59 +91,95 @@ img {
     height: var(--nav-height);
     z-index: 1000;
     transition: var(--transition-smooth);
+
     background: rgba(15, 23, 42, 0.8);
+
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+
+/* =========================================================
+   NAV CONTAINER
+   ========================================================= */
+
 .nav-container {
-    max-width: var(--container-max);
+    width: 100%;
+    max-width: 1440px;
+    height: 100%;
+
     margin: 0 auto;
     padding: 0 24px;
-    height: 100%;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
+
+    min-width: 0;
 }
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
 
 .logo {
     font-family: var(--font-heading);
     font-size: 1.375rem;
     font-weight: 800;
+
     color: var(--text-light);
+
     display: flex;
     align-items: center;
+
     gap: 8px;
-    white-space: nowrap; /* CRITICAL: Prevents "TECHNI SERVE" break */
-    flex-shrink: 0;      /* CRITICAL: Prevents logo from shrinking */
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
 }
 
-/* --- LOGO BADGE (Crossed Tools) --- */
+
+/* =========================================================
+   LOGO BADGE
+   ========================================================= */
+
 .logo-badge {
     position: relative;
+
     width: 40px;
     height: 40px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     background: rgba(37, 99, 235, 0.15);
+
     border-radius: var(--radius-sm);
+
     border: 1px solid rgba(37, 99, 235, 0.3);
+
     flex-shrink: 0;
 }
 
 .logo-badge-img {
     height: 32px;
     width: auto;
+
     object-fit: contain;
 }
 
 .logo-tool {
     position: absolute;
+
     width: 24px;
     height: 24px;
+
     color: var(--primary);
+
     stroke-width: 2.5;
 }
 
@@ -144,38 +193,56 @@ img {
     z-index: 1;
 }
 
-/* --- UPDATED NAVBAR LINKS (Optimized for Desktop) --- */
+
+/* =========================================================
+   NAVIGATION LINKS - DESKTOP
+   ========================================================= */
+
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 10px; /* Reduced to 10px to fit all 8 items on one line */
-    flex-wrap: nowrap; /* CRITICAL: Prevents wrapping to a second line */
-    flex-shrink: 1;
+    justify-content: flex-end;
+
+    gap: clamp(6px, 0.7vw, 12px);
+
+    flex-wrap: nowrap;
+
+    /*
+     * This allows the navigation to use the remaining
+     * horizontal space after the logo.
+     */
+    flex: 1;
+
+    min-width: 0;
+
+    margin-left: 20px;
 }
+
+
+/* =========================================================
+   NORMAL NAV LINKS
+   ========================================================= */
 
 .nav-links a {
     color: var(--text-light);
+
     font-weight: 500;
-    font-size: 0.85rem; /* Reduced to 0.85rem to save horizontal space */
+
+    /*
+     * Responsive font size.
+     * Prevents the navbar from becoming too large
+     * on smaller desktop screens.
+     */
+    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+
     opacity: 0.8;
-    white-space: nowrap; /* CRITICAL: Prevents text from breaking */
-}
 
-.nav-login {
-    color: var(--text-light) !important;
-    opacity: 0.9 !important;
-    padding: 8px 16px; /* Tighter padding */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-full);
-    font-weight: 600;
-    font-size: 0.85rem;
     white-space: nowrap;
-}
 
-.nav-login:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary);
-    opacity: 1 !important;
+    /*
+     * Allows normal links to shrink slightly when needed.
+     */
+    flex-shrink: 1;
 }
 
 .nav-links a:hover {
@@ -183,70 +250,172 @@ img {
     color: var(--primary);
 }
 
-/* Primary CTA (Solid, for "Join Network") */
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.nav-login {
+    color: var(--text-light) !important;
+
+    opacity: 0.9 !important;
+
+    padding: 7px clamp(10px, 1vw, 16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: var(--radius-full);
+
+    font-weight: 600;
+
+    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+}
+
+.nav-login:hover {
+    background: rgba(255, 255, 255, 0.1);
+
+    border-color: var(--primary);
+
+    opacity: 1 !important;
+}
+
+
+/* =========================================================
+   PRIMARY CTA - JOIN NETWORK
+   ========================================================= */
+
 .nav-cta-primary {
     background: var(--primary);
+
     color: white !important;
+
     opacity: 1 !important;
-    padding: 8px 18px; /* Tighter padding */
+
+    padding: 8px clamp(12px, 1.2vw, 18px);
+
     border-radius: var(--radius-full);
+
     font-weight: 600;
-    font-size: 0.85rem;
+
+    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+
     box-shadow: var(--shadow-glow);
+
     white-space: nowrap;
+
+    flex-shrink: 0;
 }
 
 .nav-cta-primary:hover {
     background: var(--primary-hover);
+
     transform: translateY(-2px);
 }
 
-/* Secondary CTA (Outline, for "Sign up as a Client") */
+
+/* =========================================================
+   SECONDARY CTA - SIGN UP AS CLIENT
+   ========================================================= */
+
 .nav-cta-secondary {
     background: transparent;
+
     color: var(--primary) !important;
+
     opacity: 1 !important;
-    padding: 8px 16px; /* Tighter padding */
+
+    padding: 8px clamp(10px, 1vw, 16px);
+
     border: 2px solid var(--primary);
+
     border-radius: var(--radius-full);
+
     font-weight: 600;
-    font-size: 0.85rem;
+
+    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+
     white-space: nowrap;
+
+    flex-shrink: 0;
 }
 
 .nav-cta-secondary:hover {
     background: rgba(37, 99, 235, 0.1);
+
     transform: translateY(-2px);
 }
 
+
+/* =========================================================
+   CONTRACTS BUTTON
+   ========================================================= */
+
 .nav-contracts {
     display: inline-flex;
+
     align-items: center;
+
     gap: 4px;
+
     color: var(--text-light) !important;
+
     opacity: 0.9 !important;
-    padding: 6px 12px; /* Tighter padding */
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+
+    padding: 6px clamp(8px, 0.9vw, 12px);
+
+    background: linear-gradient(
+        135deg,
+        rgba(37, 99, 235, 0.15) 0%,
+        rgba(16, 185, 129, 0.15) 100%
+    );
+
     border: 1px solid rgba(37, 99, 235, 0.3);
+
     border-radius: var(--radius-full);
+
     font-weight: 600;
-    font-size: 0.85rem;
+
+    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+
     white-space: nowrap;
+
+    flex-shrink: 0;
+
     transition: var(--transition-fast);
 }
 
 .nav-contracts:hover {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(37, 99, 235, 0.25) 0%,
+        rgba(16, 185, 129, 0.25) 100%
+    );
+
     border-color: var(--primary);
+
     opacity: 1 !important;
 }
 
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
 .menu-toggle {
     display: none;
+
     background: none;
+
     border: none;
+
     color: var(--text-light);
+
     cursor: pointer;
+
     flex-shrink: 0;
 }
 
@@ -255,45 +424,67 @@ img {
     height: 28px;
 }
 
-/* --- FOOTER --- */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 .site-footer {
     background: var(--bg-dark);
+
     color: var(--text-light);
+
     padding: 80px 24px 24px;
+
     margin-top: 100px;
 }
 
 .footer-container {
     max-width: var(--container-max);
+
     margin: 0 auto;
+
     display: grid;
+
     grid-template-columns: 2fr 1fr 1fr;
+
     gap: 48px;
+
     margin-bottom: 48px;
 }
 
 .footer-brand h3 {
     color: var(--text-light);
+
     font-size: 1.5rem;
+
     margin-bottom: 16px;
 }
 
 .footer-brand p {
     color: var(--text-muted);
+
     max-width: 300px;
 }
 
-.footer-links h4, .footer-contact h4 {
+.footer-links h4,
+.footer-contact h4 {
     color: var(--text-light);
+
     font-size: 1rem;
+
     margin-bottom: 20px;
+
     font-family: var(--font-body);
+
     font-weight: 600;
 }
 
 .footer-links a {
     display: block;
+
     color: var(--text-muted);
+
     margin-bottom: 12px;
 }
 
@@ -303,119 +494,189 @@ img {
 
 .footer-contact p {
     color: var(--text-muted);
+
     margin-bottom: 8px;
 }
 
 .footer-bottom {
     max-width: var(--container-max);
+
     margin: 0 auto;
+
     padding-top: 24px;
+
     border-top: 1px solid var(--border-dark);
+
     text-align: center;
+
     color: var(--text-muted);
+
     font-size: 0.875rem;
 }
 
-/* --- CUSTOM ALERT MODAL --- */
+
+/* =========================================================
+   CUSTOM ALERT MODAL
+   ========================================================= */
+
 .custom-alert {
     position: fixed;
+
     top: 100px;
+
     left: 50%;
+
     transform: translateX(-50%) translateY(-150%);
+
     z-index: 10000;
+
     width: calc(100% - 40px);
+
     max-width: 500px;
+
     opacity: 0;
+
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
     pointer-events: none;
 }
 
 .custom-alert.active {
     transform: translateX(-50%) translateY(0);
+
     opacity: 1;
+
     pointer-events: all;
 }
 
 .alert-container {
     background: white;
+
     border-radius: var(--radius-lg);
+
     padding: 20px;
+
     display: flex;
+
     align-items: flex-start;
+
     gap: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+
     position: relative;
+
     overflow: hidden;
 }
 
 .alert-icon {
     flex-shrink: 0;
+
     width: 48px;
     height: 48px;
+
     border-radius: 50%;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     transition: var(--transition-smooth);
 }
 
 .alert-icon svg {
     width: 28px;
     height: 28px;
+
     color: white;
 }
 
 .alert-icon.success {
-    background: linear-gradient(135deg, var(--secondary) 0%, #34D399 100%);
+    background: linear-gradient(
+        135deg,
+        var(--secondary) 0%,
+        #34D399 100%
+    );
 }
 
 .alert-icon.error {
-    background: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
+    background: linear-gradient(
+        135deg,
+        #EF4444 0%,
+        #F87171 100%
+    );
 }
 
 .alert-icon.warning {
-    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+    background: linear-gradient(
+        135deg,
+        #F59E0B 0%,
+        #FBBF24 100%
+    );
 }
 
 .alert-icon.info {
-    background: linear-gradient(135deg, var(--primary) 0%, #3B82F6 100%);
+    background: linear-gradient(
+        135deg,
+        var(--primary) 0%,
+        #3B82F6 100%
+    );
 }
 
 .alert-content {
     flex: 1;
+
     padding-top: 4px;
 }
 
 .alert-content h3 {
     font-size: 1.063rem;
+
     color: var(--text-dark);
+
     margin-bottom: 6px;
+
     font-weight: 700;
 }
 
 .alert-content p {
     font-size: 0.938rem;
+
     color: var(--text-muted);
+
     line-height: 1.5;
 }
 
 .alert-close {
     flex-shrink: 0;
+
     width: 32px;
     height: 32px;
+
     background: var(--bg-light);
+
     border: none;
+
     border-radius: 50%;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     cursor: pointer;
+
     color: var(--text-muted);
+
     transition: var(--transition-fast);
 }
 
 .alert-close:hover {
     background: var(--border-light);
+
     color: var(--text-dark);
 }
 
@@ -426,12 +687,18 @@ img {
 
 .alert-progress {
     position: absolute;
+
     bottom: 0;
     left: 0;
+
     height: 4px;
+
     background: var(--primary);
+
     width: 100%;
+
     transform-origin: left;
+
     animation: progressShrink 4s linear forwards;
 }
 
@@ -455,142 +722,230 @@ img {
     from {
         transform: scaleX(1);
     }
+
     to {
         transform: scaleX(0);
     }
 }
 
-/* Mobile adjustments for Alert */
+
+/* =========================================================
+   ALERT - MOBILE
+   ========================================================= */
+
 @media (max-width: 640px) {
+
     .custom-alert {
         top: 80px;
+
         width: calc(100% - 32px);
     }
-    
+
     .alert-container {
         padding: 16px;
+
         gap: 12px;
     }
-    
+
     .alert-icon {
         width: 40px;
         height: 40px;
     }
-    
+
     .alert-icon svg {
         width: 24px;
         height: 24px;
     }
-    
+
     .alert-content h3 {
         font-size: 1rem;
     }
-    
+
     .alert-content p {
         font-size: 0.875rem;
     }
 }
 
-/* ============================================
-   MOBILE STYLES (max-width: 768px)
-   ============================================ */
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
 @media (max-width: 768px) {
+
     .logo-badge-img {
-        height: 28px; 
+        height: 28px;
     }
-    
+
     .logo {
-        gap: 8px; 
+        gap: 8px;
     }
-    
+
     .logo span {
-        font-size: 1.1rem; 
+        font-size: 1.1rem;
     }
-    
+
     .menu-toggle {
         display: block;
     }
 
+    /*
+     * Mobile navigation becomes a vertical
+     * slide-down menu.
+     */
     .nav-links {
         position: fixed;
+
         top: var(--nav-height);
+
         left: 0;
+
         width: 100%;
+
         background: var(--bg-dark);
+
         flex-direction: column;
+
         padding: 32px;
+
         gap: 24px;
+
         transform: translateY(-150%);
+
         transition: var(--transition-smooth);
+
         border-bottom: 1px solid var(--border-dark);
+
+        /*
+         * Reset desktop behavior.
+         */
+        margin-left: 0;
+
+        flex: none;
+
+        justify-content: flex-start;
+
+        min-width: auto;
     }
 
     .nav-links.active {
         transform: translateY(0);
     }
 
+    /*
+     * Restore comfortable mobile text sizes.
+     */
+    .nav-links a {
+        font-size: 1rem;
+
+        flex-shrink: 0;
+    }
+
+    .nav-login,
+    .nav-cta-primary,
+    .nav-cta-secondary,
+    .nav-contracts {
+        font-size: 1rem;
+
+        flex-shrink: 0;
+    }
+
     .footer-container {
         grid-template-columns: 1fr;
+
         gap: 32px;
     }
 }
 
-/* ============================================
-   SMALL MOBILE (max-width: 480px)
-   ============================================ */
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 480px) {
+
     .logo-badge-img {
-        height: 24px; 
+        height: 24px;
     }
-    
+
     .logo {
         gap: 6px;
     }
-    
+
     .logo span {
-        font-size: 1.35rem; 
+        font-size: 1.35rem;
     }
-    
+
     .nav-container {
         padding: 0 16px;
     }
 }
 
-/* ============================================
-   TABLET STYLES (min-width: 769px)
-   ============================================ */
+
+/* =========================================================
+   TABLET / DESKTOP
+   ========================================================= */
+
 @media (min-width: 769px) {
+
     .logo-badge-img {
-        height: 36px; 
+        height: 36px;
     }
-    
+
     .logo span {
         font-size: 1.25rem;
     }
 }
 
-/* ============================================
-   DESKTOP STYLES (min-width: 1024px)
-   ============================================ */
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
 @media (min-width: 1024px) {
+
     .logo-badge-img {
-        height: 40px; 
+        height: 40px;
     }
-    
+
     .logo span {
-        font-size: 1.375rem; 
+        font-size: 1.375rem;
     }
-    
+
     .nav-container {
         padding: 0 32px;
     }
 }
 
-/* ============================================
-   LARGE DESKTOP (min-width: 1280px)
-   ============================================ */
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
 @media (min-width: 1280px) {
+
     .logo-badge-img {
-        height: 42px; 
+        height: 42px;
+    }
+}
+
+
+/* =========================================================
+   EXTRA LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1500px) {
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .nav-container {
+        padding-left: 40px;
+        padding-right: 40px;
     }
 }
