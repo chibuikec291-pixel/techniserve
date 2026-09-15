@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Login | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- LOGIN HERO -->
+<section class="login-hero">
+    <div class="login-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Welcome Back, Pro</span>
+        </div>
+        <h1>Manage Your Business,<br><span class="gradient-text">Grow Your Network</span></h1>
+        <p>Access your dashboard, track jobs, and connect with clients across Owerri.</p>
+    </div>
+</section>
+
+<!-- LOGIN FORM SECTION -->
+<section class="login-section">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="card-header">
+                <div class="header-icon">
+                    <i data-lucide="lock"></i>
+                </div>
+                <h2>Sign In to Your Account</h2>
+                <p>Enter your credentials to access your dashboard</p>
+            </div>
+
+            <form id="loginForm" class="login-form" method="POST">
+                <!-- PHONE NUMBER -->
+                <div class="form-group">
+                    <label for="phone">
+                        Phone Number
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-with-icon">
+                        <i data-lucide="phone" class="input-icon"></i>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="08012345678" 
+                            required
+                            autocomplete="tel"
+                        >
+                    </div>
+                    <small class="form-hint">Use the phone number you registered with</small>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-with-icon">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password" 
+                            required
+                            autocomplete="current-password"
+                        >
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                            <i data-lucide="eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- REMEMBER ME + FORGOT PASSWORD -->
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="{{ url_for('forgot_password') }}" class="forgot-link" id="forgotLink">Forgot password?</a>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-loader" style="display:none;">
+                        <div class="spinner-small"></div>
+                        <span>Signing in...</span>
+                    </span>
+                    <i data-lucide="arrow-right" class="btn-icon"></i>
+                </button>
+
+                <!-- REGISTER LINK -->
+                <div class="register-prompt">
+                    <span>Don't have an account?</span>
+                    <a href="{{ url_for('join_network') }}">Register as a Technician</a><br>
+                    <span> Looking to hire a professional </span>
+                    <a href='/client/signup'>Sign up as a Client</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- TRUST INDICATORS -->
+        <div class="login-features">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i data-lucide="shield-check"></i>
+                </div>
+                <div class="feature-text">
+                    <h4>Secure Login</h4>
+                    <p>Your data is encrypted and protected</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i data-lucide="clock"></i>
+                </div>
+                <div class="feature-text">
+                    <h4>24/7 Access</h4>
+                    <p>Manage your business anytime, anywhere</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <div class="feature-text">
+                    <h4>Instant Notifications</h4>
+                    <p>Get job requests in real-time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

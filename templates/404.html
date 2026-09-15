@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="error-section">
+    <div class="error-container">
+        
+        <!-- ANIMATED 404 DISPLAY -->
+        <div class="error-visual">
+            <div class="error-number">
+                <span class="digit">4</span>
+                <span class="digit center-digit">
+                    <i data-lucide="wrench" class="tool-icon tool-1"></i>
+                    <i data-lucide="hammer" class="tool-icon tool-2"></i>
+                </span>
+                <span class="digit">4</span>
+            </div>
+            <div class="error-floating-elements">
+                <i data-lucide="zap" class="float-icon icon-1"></i>
+                <i data-lucide="settings" class="float-icon icon-2"></i>
+                <i data-lucide="droplet" class="float-icon icon-3"></i>
+                <i data-lucide="paintbrush" class="float-icon icon-4"></i>
+            </div>
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        <div class="error-content">
+            <div class="error-badge">
+                <span class="badge-dot"></span>
+                <span>Oops! Page Not Found</span>
+            </div>
+            
+            <h1>We Couldn't Find That Page</h1>
+            <p class="error-subtitle">
+                Looks like this page has moved, been removed, or never existed. 
+                Don't worry — let's get you back on track.
+            </p>
+
+            <!-- SEARCH BAR -->
+            <form class="error-search" id="errorSearch">
+                <div class="search-wrapper">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="errorSearchInput" 
+                        placeholder="Search for a service (e.g., Electrical, Plumbing)..."
+                    >
+                    <button type="submit" class="search-submit">
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- QUICK LINKS -->
+            <div class="quick-links">
+                <h3>Popular Pages</h3>
+                <div class="links-grid">
+                    <a href="{{ url_for('index') }}" class="quick-link">
+                        <i data-lucide="home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="{{ url_for('find_pro') }}" class="quick-link">
+                        <i data-lucide="search"></i>
+                        <span>Find a Pro</span>
+                    </a>
+                    <a href="{{ url_for('join_network') }}" class="quick-link">
+                        <i data-lucide="user-plus"></i>
+                        <span>Join as Pro</span>
+                    </a>
+                    <a href="{{ url_for('about') }}" class="quick-link">
+                        <i data-lucide="info"></i>
+                        <span>About Us</span>
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="quick-link">
+                        <i data-lucide="mail"></i>
+                        <span>Contact</span>
+                    </a>
+                    <a href="{{ url_for('login') }}" class="quick-link">
+                        <i data-lucide="log-in"></i>
+                        <span>Login</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- REPORT LINK -->
+            <div class="report-section">
+                <p>Think this is a mistake?</p>
+                <button class="report-btn" id="reportBtn">
+                    <i data-lucide="flag"></i>
+                    <span>Report Broken Link</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/404.js') }}"></script>
+{% endblock %}

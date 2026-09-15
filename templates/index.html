@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Imo State's Premier Technical Network</span>
+        </div>
+        
+        <h1 class="hero-title">
+            Expert Technicians,<br>
+            <span class="gradient-text">Right Here in Imo State.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            From electrical installations to luxury interiors—find verified professionals in your neighborhood across Imo State.
+        </p>
+
+        <!-- SEARCH BOX -->
+        <div class="search-container">
+            <form class="search-box" id="searchForm">
+                <div class="search-field">
+                    <label for="serviceSelect">Service Needed</label>
+                    <div class="select-wrapper">
+                        <i data-lucide="wrench" class="field-icon"></i>
+                        <select id="serviceSelect" required>
+                            <option value="">Choose a service...</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Solar">Solar</option>
+                            <option value="Electrical & Solar">Electrical & Solar</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Automotive">Automobile & Mechanical</option>
+                            <option value="Furniture">Furniture & Carpentry</option>
+                            <option value="Curtains">Curtain Installation</option>
+                            <option value="POP & Screeding">POP & Screeding</option>
+                            <option value="Painting">Painting</option>
+                            <option value="AC & Refrigerator">AC & Refrigerator</option>
+                            <option value="CCTV">CCTV & Security</option>
+                            <option value="Generator">Generator Repair</option>
+                            <option value="Alumnium glass window (Almaco)">Alumnium glass window (Almaco)</option>
+                            <option value="Welding">Welding</option>
+                            <option value="Automation">Automation & Control Systems</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="search-divider"></div>
+
+                <div class="search-field">
+                    <label for="locationInput">Your Area in Owerri</label>
+                    <div class="select-wrapper">
+                        <i data-lucide="map-pin" class="field-icon"></i>
+                        <select id="locationInput" required>
+                            <option value="">Select your area...</option>
+                            
+                                <option value="Aladinma, Owerri">Aladinma</option>
+                                <option value="World Bank, Owerri">World Bank</option>
+                                <option value="New Owerri, Owerri">New Owerri</option>
+                                <option value="Ikenegbu, Owerri">Ikenegbu</option>
+                                <option value="Orji, Owerri">Orji</option>
+                                <option value="Amakohia, Owerri">Amakohia</option>
+                            
+                            
+                            
+                                <option value="Works Layout, Owerri">Works Layout</option>
+                                <option value="Okolochi, Owerri">Okolochi</option>
+                                <option value="Egbu, Owerri">Egbu</option>
+                                <option value="MCC, Owerri">MCC</option>
+                                <option value="Toronto, Owerri">Toronto</option>
+                                <option value="Ohi, Owerri">Ohi</option>
+                            
+                            
+                            
+                                <option value="Avu, Owerri">Avu</option>
+                                <option value="Obinze, Owerri">Obinze</option>
+                                <option value="Nekede, Owerri">Nekede</option>
+                                <option value="Poly Nekede, Owerri">Poly Nekede</option>
+                                <option value="Ulakwo, Owerri">Ulakwo</option>
+                                <option value="Irete, Owerri">Irete</option>
+                            
+                            
+                            
+                                <option value="FUTO, Owerri">FUTO</option>
+                                <option value="Naze, Owerri">Naze</option>
+                                <option value="Imsu, Owerri">Imsu</option>
+                                <option value="Ogbaku, Owerri">Ogbaku</option>
+                                <option value="Port-harcourt road, Owerri">Port Harcourt Road</option>
+                                <option value="Uratta, Owerri">Uratta</option>
+                                <option value="Agbala, Owerri">Agbala</option>
+                            
+                            
+                            
+                                <option value="Orlu">Orlu</option>
+                                <option value="Okigwe">Okigwe</option>
+                                <option value="Ogbia">Mbaise</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="search-btn">
+                    <span>Find Technician</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </form>
+
+                        <!-- Floating Install Button -->
+                <div id="installPrompt" style="display:none; position:fixed; bottom:15px; right:15px; z-index:9999; background:#2563EB; color:white; padding:10px 18px; border-radius:50px; box-shadow:0 4px 12px rgba(0,0,0,0.2); cursor:pointer; font-weight:600; font-size:0.875rem; -webkit-tap-highlight-color: transparent; user-select: none;">
+                📱 <span>Install App</span>
+                </div>
+
+                <!-- iOS Instruction Modal -->
+                <div id="iosInstallModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:10000; align-items:center; justify-content:center; padding:20px; backdrop-filter: blur(4px);">
+                <div style="background:white; padding:24px; border-radius:16px; max-width:320px; text-align:center; color:#111; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+                    <h3 style="margin:0 0 12px 0; font-size:1.2rem;">Install on iPhone</h3>
+                    <p style="margin:0 0 16px 0; font-size:0.95rem; color:#555;">Safari doesn't allow automatic installation. Please follow these steps:</p>
+                    <ol style="text-align:left; margin:0 0 20px 0; padding-left:20px; font-size:0.9rem; color:#333; line-height: 1.5;">
+                    <li style="margin-bottom:8px;">Tap the <strong>Share</strong> icon <span style="font-size:1.1rem;">📤</span> at the bottom.</li>
+                    <li style="margin-bottom:8px;">Scroll down and tap <strong>"Add to Home Screen"</strong>.</li>
+                    <li>Tap <strong>"Add"</strong> in the top right.</li>
+                    </ol>
+                    <button id="closeIosModal" style="background:#2563EB; color:white; border:none; padding:12px 24px; border-radius:8px; font-weight:600; cursor:pointer; width:100%; font-size:1rem;">Got it!</button>
+                </div>
+                </div>
+
+            <!-- Quick Service Tags -->
+            <div class="quick-services">
+                <span class="quick-label">Popular in Owerri:</span>
+                <a href="#" class="quick-tag" data-service="Electrical & Solar">⚡ Electrical</a>
+                <a href="#" class="quick-tag" data-service="Plumbing">🔧 Plumbing</a>
+                <a href="#" class="quick-tag" data-service="AC & Refrigerator">❄️ AC Repair</a>
+                <a href="#" class="quick-tag" data-service="POP & Painting">🎨 Painting</a>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<!-- POST A JOB CTA SECTION -->
+<section class="post-job-cta">
+    <div class="post-job-cta-container">
+        <div class="post-job-cta-icon">
+            <i data-lucide="briefcase"></i>
+        </div>
+        <div class="post-job-cta-content">
+            <h2>Have a Specific Job?</h2>
+            <p>Post your project and let verified technicians come to you. Get matched with skilled pros in your area within hours.</p>
+        </div>
+        <a href="{{ url_for('post_job') }}" class="post-job-cta-btn">
+            <span>Post a Job</span>
+            <i data-lucide="arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- TRUST INDICATORS -->
+<section class="trust-section">
+    <div class="trust-container">
+        <div class="trust-item">
+            <div class="trust-icon">
+                <i data-lucide="shield-check"></i>
+            </div>
+            <div class="trust-text">
+                <h3>Verified Local Pros</h3>
+                <p>Every technician in <b>Techniserve</b> is vetted and background-checked</p>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <div class="trust-icon">
+                <i data-lucide="clock"></i>
+            </div>
+            <div class="trust-text">
+                <h3>Quick Response</h3>
+                <p>Connect with available pros in your area within minutes</p>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <div class="trust-icon">
+                <i data-lucide="message-circle"></i>
+            </div>
+            <div class="trust-text">
+                <h3>Direct WhatsApp Booking</h3>
+                <p>No middlemen—talk directly to your technician</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LOCAL COVERAGE SECTION -->
+<section class="coverage-section">
+    <div class="coverage-container">
+        <div class="coverage-header">
+            <h2>Serving All of <span class="accent">Imo State</span></h2>
+            <p>From the heart of Owerri to neighboring communities, our network covers your area.</p>
+        </div>
+
+        <div class="coverage-grid">
+            <div class="coverage-card">
+                <i data-lucide="map-pin"></i>
+                <h3>Owerri North</h3>
+                <p>Aladinma, World Bank, New Owerri, Ikenegbu</p>
+            </div>
+
+            <div class="coverage-card">
+                <i data-lucide="map-pin"></i>
+                <h3>Owerri Municipal</h3>
+                <p>Aladinma, Works Layout, Egbu</p>
+            </div>
+
+            <div class="coverage-card">
+                <i data-lucide="map-pin"></i>
+                <h3>Owerri West</h3>
+                <p>Avu, Obinze, Nekede, Amakohia</p>
+            </div>
+
+            <div class="coverage-card">
+                <i data-lucide="map-pin"></i>
+                <h3>Orlu & Beyond</h3>
+                <p>Orlu, Okigwe, Mbaise, Oguta</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+{% endblock %}

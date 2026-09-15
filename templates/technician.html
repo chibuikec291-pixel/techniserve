@@ -1,0 +1,372 @@
+{% extends "base.html" %}
+
+{% block title %}Technician Profile | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/technician.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- LOADING STATE -->
+<div class="profile-loading" id="profileLoading">
+    <div class="loading-spinner"></div>
+    <p>Loading technician profile...</p>
+</div>
+
+<!-- NOT FOUND STATE -->
+<div class="profile-not-found" id="profileNotFound" style="display:none;">
+    <div class="not-found-content">
+        <div class="not-found-icon">
+            <i data-lucide="user-x"></i>
+        </div>
+        <h2>Technician Not Found</h2>
+        <p>The technician you're looking for doesn't exist or is no longer available on TECHNISERVE.</p>
+        <div class="not-found-actions">
+            <a href="{{ url_for('find_pro') }}" class="btn-primary">
+                <i data-lucide="search"></i>
+                <span>Find Another Technician</span>
+            </a>
+            <a href="{{ url_for('index') }}" class="btn-secondary">
+                <i data-lucide="home"></i>
+                <span>Back to Home</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN PROFILE CONTENT -->
+<div class="profile-wrapper" id="profileWrapper" style="display:none;">
+    
+    <!-- PROFILE HERO -->
+    <section class="profile-hero">
+        <div class="profile-hero-container">
+            <div class="profile-hero-content">
+                
+                <!-- Profile Image -->
+                <div class="profile-image-wrapper">
+                    <div class="profile-image" id="profileImage">
+                        <!-- Actual Image (Hidden by default) -->
+                        <img id="profilePic" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        
+                        <!-- Placeholder Icon (Shown by default) -->
+                        <div id="profilePlaceholder" style="display:flex; width:100%; height:100%; align-items:center; justify-content:center; background:#f1f5f9; border-radius:50%;">
+                            <i data-lucide="user" style="width:48px; height:48px; color:#94a3b8;"></i>
+                        </div>
+                    </div>
+                    <div class="verified-badge-large">
+                        <i data-lucide="shield-check"></i>
+                        <span>Verified Pro</span>
+                    </div>
+                </div>
+
+                <!-- Profile Info -->
+                <div class="profile-hero-info">
+                    <div class="profile-tags">
+                        <span class="tag tag-skill" id="tagSkill"></span>
+                        <span class="tag tag-specialty" id="tagSpecialty"></span>
+                    </div>
+                    
+                    <!-- NAME + AVAILABILITY BADGE (Wrapped in flex container) -->
+                    <div class="profile-name-container">
+                        <h1 id="profileName">Technician Name</h1>
+                        <span id="publicAvailabilityBadge" class="availability-badge available" style="display:none;">
+                            <span class="status-dot"></span>
+                            Available
+                        </span>
+                    </div>
+                    
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <i data-lucide="map-pin"></i>
+                            <span id="profileLocation">Location</span>
+                        </div>
+                        <div class="meta-item">
+                            <i data-lucide="briefcase"></i>
+                            <span id="profileExperience">Experience</span>
+                        </div>
+                        <div class="meta-item">
+                            <i data-lucide="star"></i>
+                            <span id="profileRating">No ratings yet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Contact Card -->
+            <div class="contact-card-desktop" id="contactCardDesktop">
+                <div class="contact-card-header">
+                    <h3>Ready to hire?</h3>
+                    <p>Connect directly via WhatsApp</p>
+                </div>
+                <a href="#" class="btn-whatsapp-large" id="whatsappBtnDesktop" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    <span>Book on WhatsApp</span>
+                </a>
+                <a href="#" class="btn-call" id="callBtnDesktop">
+                    <i data-lucide="phone"></i>
+                    <span>Call Now</span>
+                </a>
+                <div class="contact-card-footer">
+                    <i data-lucide="clock"></i>
+                    <span>Usually responds within 1 hour</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT GRID -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile-grid">
+                
+                <!-- LEFT COLUMN -->
+                <div class="profile-main">
+                    
+                    <!-- ABOUT SECTION -->
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>
+                                <i data-lucide="info"></i>
+                                About
+                            </h2>
+                        </div>
+                        <div class="about-content" id="aboutContent">
+                            <p id="profileBio">Professional technician specializing in quality work across Owerri and Imo State.</p>
+                            
+                            <div class="about-stats">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i data-lucide="award"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <strong id="statSkill">—</strong>
+                                        <span>Main Skill</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i data-lucide="target"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <strong id="statSpecialty">—</strong>
+                                        <span>Specialty</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i data-lucide="calendar"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <strong id="statMemberSince">—</strong>
+                                        <span>Member Since</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PORTFOLIO SECTION -->
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>
+                                <i data-lucide="image"></i>
+                                Portfolio
+                            </h2>
+                            <span class="portfolio-count" id="portfolioCount">0 photos</span>
+                        </div>
+                        <div class="portfolio-grid" id="portfolioGrid">
+                            <div class="portfolio-empty">
+                                <i data-lucide="image-off"></i>
+                                <p>This technician hasn't uploaded portfolio photos yet.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICES SECTION -->
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>
+                                <i data-lucide="wrench"></i>
+                                Services Offered
+                            </h2>
+                        </div>
+                        <div class="services-list" id="servicesList">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- REVIEWS SECTION -->
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>
+                                <i data-lucide="message-square"></i>
+                                Reviews
+                            </h2>
+                            <div class="reviews-summary" id="reviewsSummary" style="display:flex; align-items:center; gap:10px;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="reviews-section" id="reviewsSection">
+                            <div class="reviews-empty" id="reviewsEmpty">
+                                <i data-lucide="message-circle"></i>
+                                <h3>No Reviews Yet</h3>
+                                <p>Be the first client to review this technician after hiring them.</p>
+                            </div>
+                            <!-- Reviews will be injected here by JS -->
+                        </div>
+
+                        <!-- WRITE A REVIEW FORM -->
+                        <div class="write-review-container" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-light);">
+                            <h3 style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 15px; display:flex; align-items:center; gap:8px;">
+                                <i data-lucide="pen-tool" style="width:18px; height:18px; color:var(--primary);"></i>
+                                Write a Review
+                            </h3>
+                            <form id="reviewForm" style="display:flex; flex-direction:column; gap:15px;">
+                                <div class="form-group">
+                                    <label style="font-size:0.875rem; color:var(--text-muted); margin-bottom:5px; display:block;">Your Name</label>
+                                    <input type="text" id="reviewerName" placeholder="Enter your name" required style="width:100%; padding:10px 14px; border:1px solid var(--border-light); border-radius:var(--radius-md); font-family:var(--font-body);">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="font-size:0.875rem; color:var(--text-muted); margin-bottom:5px; display:block;">Rating</label>
+                                    <div class="star-rating-input" id="starRatingInput" style="display:flex; gap:5px; cursor:pointer;">
+                                        <svg class="star-icon" data-value="1" viewBox="0 0 24 24" fill="#E2E8F0" style="width:28px; height:28px; transition: fill 0.2s;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg class="star-icon" data-value="2" viewBox="0 0 24 24" fill="#E2E8F0" style="width:28px; height:28px; transition: fill 0.2s;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg class="star-icon" data-value="3" viewBox="0 0 24 24" fill="#E2E8F0" style="width:28px; height:28px; transition: fill 0.2s;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg class="star-icon" data-value="4" viewBox="0 0 24 24" fill="#E2E8F0" style="width:28px; height:28px; transition: fill 0.2s;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <svg class="star-icon" data-value="5" viewBox="0 0 24 24" fill="#E2E8F0" style="width:28px; height:28px; transition: fill 0.2s;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                    </div>
+                                    <input type="hidden" id="reviewRating" value="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label style="font-size:0.875rem; color:var(--text-muted); margin-bottom:5px; display:block;">Comment (Optional)</label>
+                                    <textarea id="reviewComment" placeholder="Share your experience with this technician..." rows="3" style="width:100%; padding:10px 14px; border:1px solid var(--border-light); border-radius:var(--radius-md); font-family:var(--font-body); resize:vertical;"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn-primary" id="submitReviewBtn" style="background:var(--primary); color:white; padding:12px 20px; border:none; border-radius:var(--radius-md); font-weight:600; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; max-width:200px;">
+                                    <span class="btn-text">Submit Review</span>
+                                    <span class="btn-loader" style="display:none;"><div class="spinner-small" style="width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.8s linear infinite;"></div></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN (Desktop only - mobile has sticky bottom bar) -->
+                <aside class="profile-sidebar">
+                    
+                    <!-- CONTACT CARD -->
+                    <div class="sidebar-card contact-sidebar">
+                        <h3>Get in Touch</h3>
+                        <p>Ready to start your project? Contact this technician directly.</p>
+
+                        <!-- BOOK NOW BUTTON -->
+                        <button id="bookNowBtn" class="btn-book-now">
+                            <i data-lucide="calendar-check"></i>
+                            Book This Technician
+                        </button>
+
+                        <!-- BOOKING MODAL -->
+                        <div id="bookingModal" class="booking-modal" style="display:none;">
+                            <div class="booking-modal-content">
+                                <div class="booking-modal-header">
+                                    <h2>Book <span id="bookingTechName">Technician</span></h2>
+                                    <button class="close-modal" type="button" aria-label="Close">&times;</button>
+                                </div>
+                                <form id="bookingForm">
+                                    <div class="form-group">
+                                        <label for="bookingClientName">Your Name *</label>
+                                        <input type="text" id="bookingClientName" placeholder="e.g., John Doe" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingClientPhone">Your Phone *</label>
+                                        <input type="tel" id="bookingClientPhone" placeholder="08012345678" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingServiceType">Service Needed *</label>
+                                        <input type="text" id="bookingServiceType" placeholder="e.g., Solar Inverter Repair" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingNotes">Additional Notes</label>
+                                        <textarea id="bookingNotes" rows="3" placeholder="Describe what you need, preferred time, etc."></textarea>
+                                    </div>
+                                    
+                                    <div class="booking-security-notice">
+                                        <i data-lucide="shield-check"></i>
+                                        <span>The technician will contact you within 25 minutes to confirm the booking.</span>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn-submit-booking">
+                                        <i data-lucide="check-circle"></i>
+                                        Confirm Booking
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="btn-whatsapp" id="whatsappBtnSidebar" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            <span>WhatsApp</span>
+                        </a>
+                        
+                        <a href="#" class="btn-call" id="callBtnSidebar">
+                            <i data-lucide="phone"></i>
+                            <span>Call</span>
+                        </a>
+                    </div>
+
+                    <!-- SAFETY CARD -->
+                    <div class="sidebar-card safety-card">
+                        <h3>
+                            <i data-lucide="shield-check"></i>
+                            Safety Tips
+                        </h3>
+                        <ul>
+                            <li>Always discuss pricing before work begins</li>
+                            <li>Get a written agreement for large projects</li>
+                            <li>Pay in installments for big jobs</li>
+                            <li>Verify the technician's ID on arrival</li>
+                        </ul>
+                    </div>
+
+                    <!-- SIMILAR TECHNICIANS -->
+                    <div class="sidebar-card similar-card">
+                        <h3>Similar Technicians</h3>
+                        <div class="similar-list" id="similarList">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOBILE STICKY BOTTOM BAR -->
+    <div class="mobile-bottom-bar" id="mobileBottomBar">
+        <a href="#" class="mobile-btn-call" id="callBtnMobile">
+            <i data-lucide="phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="#" class="mobile-btn-whatsapp" id="whatsappBtnMobile" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>Book on WhatsApp</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.TECHNICIAN_PHONE = "{{ phone }}";
+</script>
+<script src="{{ url_for('static', filename='js/technician.js') }}"></script>
+{% endblock %}

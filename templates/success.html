@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}Success | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/success.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="success-section">
+    <!-- CONFETTI BACKGROUND -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <div class="success-container">
+        <!-- ANIMATED SUCCESS ICON -->
+        <div class="success-visual">
+            <div class="success-circle">
+                <div class="success-circle-inner">
+                    {% if success_type == 'registration' %}
+                        <i data-lucide="user-check" class="success-icon"></i>
+                    {% elif success_type == 'contact' %}
+                        <i data-lucide="mail-check" class="success-icon"></i>
+                    {% elif success_type == 'password-reset' %}
+                        <i data-lucide="key-round" class="success-icon"></i>
+                    {% elif success_type == 'job-accepted' %}
+                        <i data-lucide="briefcase" class="success-icon"></i>
+                    {% elif success_type == 'profile-updated' %}
+                        <i data-lucide="user" class="success-icon"></i>
+                    {% elif success_type == 'contract' %}
+                        <i data-lucide="file-signature" class="success-icon"></i>
+                    {% else %}
+                        <i data-lucide="check-circle" class="success-icon"></i>
+                    {% endif %}
+                </div>
+                <div class="success-ring ring-1"></div>
+                <div class="success-ring ring-2"></div>
+                <div class="success-ring ring-3"></div>
+            </div>
+        </div>
+
+        <!-- SUCCESS CONTENT -->
+        <div class="success-content">
+            <!-- Dynamic Badge -->
+            <div class="success-badge">
+                <span class="badge-dot"></span>
+                <span id="successBadgeText">
+                    {% if success_type == 'registration' %}
+                        Account Created
+                    {% elif success_type == 'contact' %}
+                        Message Sent
+                    {% elif success_type == 'password-reset' %}
+                        Password Reset
+                    {% elif success_type == 'job-accepted' %}
+                        Job Accepted
+                    {% elif success_type == 'profile-updated' %}
+                        Profile Updated
+                    {% elif success_type == 'contract' %}
+                        Project Request Submitted
+                    {% else %}
+                        Success
+                    {% endif %}
+                </span>
+            </div>
+
+            <!-- Dynamic Title -->
+            <h1 id="successTitle">
+                {% if success_type == 'registration' %}
+                    Welcome to TECHNISERVE! 🎉
+                {% elif success_type == 'contact' %}
+                    Message Received!
+                {% elif success_type == 'password-reset' %}
+                    Password Reset Complete!
+                {% elif success_type == 'job-accepted' %}
+                    Job Successfully Accepted!
+                {% elif success_type == 'profile-updated' %}
+                    Profile Updated!
+                {% elif success_type == 'contract' %}
+                    Project Request Received! 🏗️
+                {% else %}
+                    Operation Successful!
+                {% endif %}
+            </h1>
+
+            <!-- Dynamic Description -->
+            <p class="success-description" id="successDescription">
+                {% if success_type == 'registration' %}
+                    Your account has been created successfully. You can now login to access your dashboard, manage your profile, and start receiving job requests from clients across Owerri.
+                {% elif success_type == 'contact' %}
+                    Thank you for reaching out! Our support team has received your message and will get back to you within 24 hours. Check your email for a confirmation.
+                {% elif success_type == 'password-reset' %}
+                    Your password has been reset successfully. For your security, please use your new password to login. If you didn't make this change, contact support immediately.
+                {% elif success_type == 'job-accepted' %}
+                    Great! You've accepted the job. Reach out to the client via WhatsApp to discuss details, schedule the work, and confirm pricing.
+                {% elif success_type == 'profile-updated' %}
+                    Your profile information has been updated successfully. Changes will be reflected in your public profile immediately.
+                {% elif success_type == 'contract' %}
+                    Thank you for choosing TECHNISERVE Contracts! Our team will review your project details and contact you within 24 hours to discuss next steps. Please keep your reference number handy for all future communications.
+                {% else %}
+                    {% if custom_message %}
+                        {{ custom_message }}
+                    {% else %}
+                        Your action has been completed successfully. Thank you for using TECHNISERVE.
+                    {% endif %}
+                {% endif %}
+            </p>
+
+            <!-- WHAT HAPPENS NEXT (Type-specific) -->
+            <div class="next-steps">
+                <h3>
+                    <i data-lucide="list-checks"></i>
+                    <span>What Happens Next?</span>
+                </h3>
+                <ul class="steps-list" id="stepsList">
+                    {% if success_type == 'registration' %}
+                        <li>
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <strong>Login to Your Account</strong>
+                                <p>Use your phone number and the password you just created.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <strong>Complete Your Profile</strong>
+                                <p>Upload a professional photo and add portfolio images of your work.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <strong>Start Receiving Jobs</strong>
+                                <p>Clients in Owerri will start finding you in search results.</p>
+                            </div>
+                        </li>
+                    {% elif success_type == 'contact' %}
+                        <li>
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <strong>We Review Your Message</strong>
+                                <p>Our team reads every message within a few hours.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <strong>Get a Response</strong>
+                                <p>Expect a reply within 24 hours via email or phone.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <strong>Issue Resolved</strong>
+                                <p>We'll work with you until your question is fully answered.</p>
+                            </div>
+                        </li>
+                    {% elif success_type == 'password-reset' %}
+                        <li>
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <strong>Login with New Password</strong>
+                                <p>Use your new password to access your account.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <strong>Verify Your Session</strong>
+                                <p>Check that all your data and settings are intact.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <strong>Keep Your Password Safe</strong>
+                                <p>Consider using a password manager for security.</p>
+                            </div>
+                        </li>
+                    {% elif success_type == 'job-accepted' %}
+                        <li>
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <strong>Contact the Client</strong>
+                                <p>Use the WhatsApp button to reach out directly.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <strong>Discuss Details</strong>
+                                <p>Confirm the scope, timeline, and pricing.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <strong>Complete the Job</strong>
+                                <p>After finishing, mark it as completed in your dashboard.</p>
+                            </div>
+                        </li>
+                    {% elif success_type == 'contract' %}
+                        <li>
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <strong>We Review Your Project</strong>
+                                <p>Our contracts team analyzes your requirements and prepares an initial assessment.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <strong>Initial Contact Within 24 Hours</strong>
+                                <p>We'll call, email, or WhatsApp you to discuss your project in detail.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <strong>Site Visit & Custom Quote</strong>
+                                <p>For local projects, we schedule a site visit. For diaspora clients, we arrange a video consultation.</p>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li>
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <strong>Continue Exploring</strong>
+                                <p>Discover more features and services on TECHNISERVE.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <strong>Share With Others</strong>
+                                <p>Tell your friends and colleagues about our platform.</p>
+                            </div>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="success-actions" id="successActions">
+                {% if success_type == 'registration' %}
+                    <a href="{{ url_for('login') }}" class="btn-primary">
+                        <i data-lucide="log-in"></i>
+                        <span>Login Now</span>
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn-secondary">
+                        <i data-lucide="home"></i>
+                        <span>Go to Homepage</span>
+                    </a>
+                {% elif success_type == 'contact' %}
+                    <a href="{{ url_for('index') }}" class="btn-primary">
+                        <i data-lucide="home"></i>
+                        <span>Back to Home</span>
+                    </a>
+                    <a href="{{ url_for('find_pro') }}" class="btn-secondary">
+                        <i data-lucide="search"></i>
+                        <span>Find a Technician</span>
+                    </a>
+                {% elif success_type == 'password-reset' %}
+                    <a href="{{ url_for('login') }}" class="btn-primary">
+                        <i data-lucide="log-in"></i>
+                        <span>Login with New Password</span>
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn-secondary">
+                        <i data-lucide="help-circle"></i>
+                        <span>Need Help?</span>
+                    </a>
+                {% elif success_type == 'job-accepted' %}
+                    <a href="{{ url_for('dashboard') }}" class="btn-primary">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Back to Dashboard</span>
+                    </a>
+                {% elif success_type == 'profile-updated' %}
+                    <a href="{{ url_for('dashboard') }}" class="btn-primary">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Back to Dashboard</span>
+                    </a>
+                {% elif success_type == 'contract' %}
+                    <a href="{{ url_for('index') }}" class="btn-primary">
+                        <i data-lucide="home"></i>
+                        <span>Back to Homepage</span>
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn-secondary">
+                        <i data-lucide="headphones"></i>
+                        <span>Contact Support</span>
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('index') }}" class="btn-primary">
+                        <i data-lucide="home"></i>
+                        <span>Go to Homepage</span>
+                    </a>
+                {% endif %}
+            </div>
+
+            <!-- AUTO-REDIRECT COUNTDOWN -->
+            <div class="redirect-countdown" id="redirectCountdown">
+                <p>
+                    <span>Auto-redirecting in </span>
+                    <span class="countdown-number" id="countdownNumber">10</span>
+                    <span> seconds...</span>
+                </p>
+                <button class="cancel-redirect" id="cancelRedirect">Cancel</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Pass the success type to JS
+    window.SUCCESS_TYPE = "{{ success_type }}";
+</script>
+<script src="{{ url_for('static', filename='js/success.js') }}"></script>
+{% endblock %}

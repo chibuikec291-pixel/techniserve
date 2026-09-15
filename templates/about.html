@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- ABOUT HERO -->
+<section class="about-hero">
+    <div class="about-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Building Trust Since 2025</span>
+        </div>
+        <h1>Connecting Owerri to <span class="gradient-text">Skilled Professionals</span></h1>
+        <p>We're on a mission to make finding reliable technical services as easy as sending a WhatsApp message.</p>
+    </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="story-section">
+    <div class="story-container">
+        <div class="story-header">
+            <h2>Our Story</h2>
+            <p class="section-subtitle">Why we built TECHNISERVE</p>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>
+                    Finding a reliable electrician, plumber, or technician in Owerri used to mean asking around, 
+                    hoping for recommendations, and crossing your fingers. We knew there had to be a better way.
+                </p>
+                <p>
+                    That's why we created <strong>TECHNISERVE</strong> — Imo State's first verified technical services 
+                    marketplace. We connect homeowners and businesses with skilled, background-checked professionals 
+                    in their area, making it easy to find help when you need it most.
+                </p>
+                <p>
+                    Today, we're proud to serve hundreds of clients across Owerri, from Aladinma to World Bank, 
+                    Ikenegbu to New Owerri. And we're just getting started.
+                </p>
+            </div>
+            <div class="story-stats">
+                <div class="stat">
+                    <h3>500+</h3>
+                    <p>Verified Professionals</p>
+                </div>
+                <div class="stat">
+                    <h3>1,000+</h3>
+                    <p>Jobs Completed</p>
+                </div>
+                <div class="stat">
+                    <h3>4.8★</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-section">
+    <div class="why-container">
+        <div class="why-header">
+            <h2>Why Choose <span class="accent">TECHNISERVE</span>?</h2>
+            <p class="section-subtitle">What makes us different</p>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">
+                    <i data-lucide="shield-check"></i>
+                </div>
+                <h3>Verified Professionals</h3>
+                <p>Every technician is background-checked and verified. We ensure you're working with trusted experts.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i data-lucide="map-pin"></i>
+                </div>
+                <h3>Local & Nearby</h3>
+                <p>Find technicians right here in Owerri and Imo State. No more waiting for someone to travel from another city.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i data-lucide="message-circle"></i>
+                </div>
+                <h3>Direct WhatsApp Booking</h3>
+                <p>No middlemen, no hidden fees. Connect directly with your technician via WhatsApp and negotiate fairly.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i data-lucide="star"></i>
+                </div>
+                <h3>Rated & Reviewed</h3>
+                <p>See real ratings and reviews from previous clients. Make informed decisions with confidence.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i data-lucide="clock"></i>
+                </div>
+                <h3>Quick Response</h3>
+                <p>Most technicians respond within minutes. Get the help you need without the wait.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i data-lucide="wrench"></i>
+                </div>
+                <h3>All Technical Services</h3>
+                <p>From electrical to plumbing, automotive to interiors — find every type of technician in one place.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OUR VALUES -->
+<section class="values-section">
+    <div class="values-container">
+        <div class="values-header">
+            <h2>Our Core Values</h2>
+            <p class="section-subtitle">What drives us every day</p>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-number">01</div>
+                <div class="value-content">
+                    <h3>Trust First</h3>
+                    <p>We verify every professional because your safety and satisfaction come first.</p>
+                </div>
+            </div>
+
+            <div class="value-item">
+                <div class="value-number">02</div>
+                <div class="value-content">
+                    <h3>Local Empowerment</h3>
+                    <p>We're building opportunities for skilled workers right here in Imo State.</p>
+                </div>
+            </div>
+
+            <div class="value-item">
+                <div class="value-number">03</div>
+                <div class="value-content">
+                    <h3>Transparency</h3>
+                    <p>No hidden fees, no surprises. What you see is what you get.</p>
+                </div>
+            </div>
+
+            <div class="value-item">
+                <div class="value-number">04</div>
+                <div class="value-content">
+                    <h3>Excellence</h3>
+                    <p>We hold ourselves and our professionals to the highest standards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <div class="cta-container">
+        <h2>Ready to Find Your Technician?</h2>
+        <p>Join thousands of satisfied clients across Owerri and Imo State.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('index') }}" class="btn-primary">
+                <i data-lucide="search"></i>
+                <span>Find a Professional</span>
+            </a>
+            <a href="{{ url_for('join_network') }}" class="btn-secondary">
+                <i data-lucide="user-plus"></i>
+                <span>Join as a Technician</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Service & Privacy Policy | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/terms.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- TERMS HERO -->
+<section class="terms-hero">
+    <div class="terms-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Legal Information</span>
+        </div>
+        <h1>Terms & <span class="gradient-text">Privacy Policy</span></h1>
+        <p>Transparency is one of our core values. Please read these documents carefully.</p>
+        <p class="last-updated">Last updated: June 26, 2026</p>
+    </div>
+</section>
+
+<!-- TERMS SECTION -->
+<section class="terms-section">
+    <div class="terms-container">
+        <!-- TAB NAVIGATION -->
+        <div class="terms-tabs">
+            <button class="tab-btn active" data-tab="terms-content">
+                <i data-lucide="file-text"></i>
+                <span>Terms of Service</span>
+            </button>
+            <button class="tab-btn" data-tab="privacy-content">
+                <i data-lucide="shield"></i>
+                <span>Privacy Policy</span>
+            </button>
+        </div>
+
+        <div class="terms-layout">
+            <!-- TABLE OF CONTENTS (Desktop Sidebar) -->
+            <aside class="toc-sidebar" id="tocSidebar">
+                <h3>
+                    <i data-lucide="list"></i>
+                    Contents
+                </h3>
+                <nav class="toc-nav" id="tocNav">
+                    <!-- Populated dynamically by JS -->
+                </nav>
+            </aside>
+
+            <!-- MAIN CONTENT -->
+            <div class="terms-content-wrapper">
+                <!-- TERMS OF SERVICE TAB -->
+                <div class="tab-content active" id="terms-content">
+                    <div class="content-header">
+                        <h2>Terms of Service</h2>
+                        <p>Welcome to TECHNISERVE. These terms govern your use of our platform and services.</p>
+                    </div>
+
+                    <article class="legal-content">
+                        <section id="terms-1">
+                            <h3>1. Acceptance of Terms</h3>
+                            <p>By accessing or using TECHNISERVE ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                            <p>TECHNISERVE is a technical services marketplace connecting clients with verified professionals in Owerri and Imo State, Nigeria.</p>
+                        </section>
+
+                        <section id="terms-2">
+                            <h3>2. Eligibility</h3>
+                            <p>To use TECHNISERVE, you must:</p>
+                            <ul>
+                                <li>Be at least 18 years of age</li>
+                                <li>Have legal capacity to enter into binding agreements</li>
+                                <li>Provide accurate and truthful information during registration</li>
+                                <li>For technicians: possess valid professional skills and a verifiable National Identification Number (NIN)</li>
+                            </ul>
+                        </section>
+
+                        <section id="terms-3">
+                            <h3>3. User Accounts</h3>
+                            <p><strong>For Clients:</strong> You may browse and contact technicians without creating an account. When you reach out via WhatsApp, you agree to communicate respectfully and honestly about your needs.</p>
+                            <p><strong>For Technicians:</strong> Registration requires:</p>
+                            <ul>
+                                <li>A valid Nigerian phone number</li>
+                                <li>Your 11-digit National Identification Number (NIN) for verification</li>
+                                <li>Accurate information about your skills, experience, and service area</li>
+                                <li>A secure password that you keep confidential</li>
+                            </ul>
+                            <p>You are responsible for maintaining the security of your account credentials. Notify us immediately if you suspect unauthorized access.</p>
+                        </section>
+
+                        <section id="terms-4">
+                            <h3>4. Platform Services</h3>
+                            <p>TECHNISERVE provides:</p>
+                            <ul>
+                                <li>A searchable directory of verified technical professionals</li>
+                                <li>Direct WhatsApp communication between clients and technicians</li>
+                                <li>Profile management tools for technicians</li>
+                                <li>Job request and management features</li>
+                            </ul>
+                            <p><strong>Important:</strong> TECHNISERVE is a marketplace platform. We do not directly employ technicians or guarantee the quality of work performed. All service agreements are between the client and the technician.</p>
+                        </section>
+
+                        <section id="terms-5">
+                            <h3>5. Technician Verification</h3>
+                            <p>We verify technicians through:</p>
+                            <ul>
+                                <li>NIN validation to confirm identity</li>
+                                <li>Phone number verification</li>
+                                <li>Review of skills and experience claims</li>
+                                <li>Portfolio review where applicable</li>
+                            </ul>
+                            <p>Verification does not constitute a guarantee of work quality. Clients should exercise due diligence and communicate clearly about expectations.</p>
+                        </section>
+
+                        <section id="terms-6">
+                            <h3>6. Payments & Pricing</h3>
+                            <p>All pricing, payment terms, and service agreements are negotiated directly between clients and technicians via WhatsApp or other agreed channels.</p>
+                            <p>TECHNISERVE does not process payments between parties (currently). We are not responsible for payment disputes, though we may assist in mediation where possible.</p>
+                        </section>
+
+                        <section id="terms-7">
+                            <h3>7. Prohibited Conduct</h3>
+                            <p>Users must not:</p>
+                            <ul>
+                                <li>Provide false identity documents or misrepresent qualifications</li>
+                                <li>Use the platform for illegal activities</li>
+                                <li>Harass, threaten, or discriminate against other users</li>
+                                <li>Attempt to bypass our verification systems</li>
+                                <li>Create multiple accounts to circumvent restrictions</li>
+                                <li>Solicit transactions outside the platform to avoid accountability</li>
+                                <li>Share other users' personal information without consent</li>
+                            </ul>
+                            <p>Violations may result in account suspension or permanent removal.</p>
+                        </section>
+
+                        <section id="terms-8">
+                            <h3>8. Intellectual Property</h3>
+                            <p>All content on TECHNISERVE — including the logo, design, text, and code — is owned by TECHNISERVE or its licensors. You may not reproduce, distribute, or create derivative works without our written permission.</p>
+                            <p>Technicians retain ownership of photos and content they upload to their profiles, but grant TECHNISERVE a license to display this content on the platform.</p>
+                        </section>
+
+                        <section id="terms-9">
+                            <h3>9. Limitation of Liability</h3>
+                            <p>TECHNISERVE is provided "as is" without warranties of any kind. To the maximum extent permitted by Nigerian law, we are not liable for:</p>
+                            <ul>
+                                <li>Quality of work performed by technicians</li>
+                                <li>Disputes between clients and technicians</li>
+                                <li>Loss of data or service interruptions</li>
+                                <li>Indirect, incidental, or consequential damages</li>
+                            </ul>
+                        </section>
+
+                        <section id="terms-10">
+                            <h3>10. Dispute Resolution</h3>
+                            <p>Any disputes arising from these terms or your use of the platform shall be governed by the laws of the Federal Republic of Nigeria. Disputes shall first be attempted to be resolved through good-faith negotiation, and if unsuccessful, through the courts of competent jurisdiction in Imo State.</p>
+                        </section>
+
+                        <section id="terms-11">
+                            <h3>11. Changes to Terms</h3>
+                            <p>We may update these Terms from time to time. Continued use of the platform after changes constitutes acceptance of the new terms. We will notify registered users of significant changes via email or platform notifications.</p>
+                        </section>
+
+                        <section id="terms-12">
+                            <h3>12. Contact Us</h3>
+                            <p>If you have questions about these Terms, please contact us:</p>
+                            <ul>
+                                <li><strong>Email:</strong> support@techniserve.com.ng</li>
+                                <li><strong>Phone:</strong> +234 800 TECHNISERV</li>
+                                <li><strong>Office:</strong> Aladinma, Owerri, Imo State, Nigeria</li>
+                            </ul>
+                        </section>
+                    </article>
+                </div>
+
+                <!-- PRIVACY POLICY TAB -->
+                <div class="tab-content" id="privacy-content">
+                    <div class="content-header">
+                        <h2>Privacy Policy</h2>
+                        <p>Your privacy matters to us. This policy explains how we collect, use, and protect your information.</p>
+                    </div>
+
+                    <article class="legal-content">
+                        <section id="privacy-1">
+                            <h3>1. Information We Collect</h3>
+                            <p><strong>From Clients:</strong></p>
+                            <ul>
+                                <li>Name and contact information (when voluntarily provided)</li>
+                                <li>Search queries and service preferences</li>
+                                <li>Device and browser information</li>
+                            </ul>
+                            <p><strong>From Technicians:</strong></p>
+                            <ul>
+                                <li>Full legal name</li>
+                                <li>National Identification Number (NIN)</li>
+                                <li>Phone number and WhatsApp number</li>
+                                <li>Professional skills, specialty, and experience</li>
+                                <li>Service location</li>
+                                <li>Profile photo and portfolio images</li>
+                            </ul>
+                        </section>
+
+                        <section id="privacy-2">
+                            <h3>2. How We Use Your Information</h3>
+                            <p>We use your information to:</p>
+                            <ul>
+                                <li>Verify technician identities and qualifications</li>
+                                <li>Connect clients with appropriate technicians</li>
+                                <li>Facilitate communication via WhatsApp</li>
+                                <li>Improve our platform and user experience</li>
+                                <li>Send important service notifications</li>
+                                <li>Comply with legal obligations</li>
+                            </ul>
+                        </section>
+
+                        <section id="privacy-3">
+                            <h3>3. NIN Handling & Security</h3>
+                            <p>Your National Identification Number is sensitive information. We handle it with the utmost care:</p>
+                            <ul>
+                                <li>NIN is collected solely for identity verification purposes</li>
+                                <li>It is stored using industry-standard encryption</li>
+                                <li>Access is restricted to authorized verification personnel only</li>
+                                <li>We never display full NINs on the platform (only masked versions)</li>
+                                <li>We do not share NINs with third parties except as required by law</li>
+                            </ul>
+                        </section>
+
+                        <section id="privacy-4">
+                            <h3>4. Information Sharing</h3>
+                            <p>We do not sell your personal information. We may share information only in these circumstances:</p>
+                            <ul>
+                                <li><strong>With your consent:</strong> When you contact a technician, they see your inquiry</li>
+                                <li><strong>For verification:</strong> Limited information may be verified with relevant authorities</li>
+                                <li><strong>Legal requirements:</strong> When required by Nigerian law or court order</li>
+                                <li><strong>Business transfers:</strong> In the event of a merger or acquisition, with notice to users</li>
+                            </ul>
+                        </section>
+
+                        <section id="privacy-5">
+                            <h3>5. Data Storage & Security</h3>
+                            <p>We implement robust security measures to protect your data:</p>
+                            <ul>
+                                <li>Encrypted data transmission (HTTPS)</li>
+                                <li>Secure password storage using industry-standard hashing</li>
+                                <li>Regular security audits and updates</li>
+                                <li>Limited employee access to personal data</li>
+                                <li>Secure servers with physical and digital protections</li>
+                            </ul>
+                            <p>While we strive to protect your information, no method of transmission over the Internet is 100% secure. We cannot guarantee absolute security.</p>
+                        </section>
+
+                        <section id="privacy-6">
+                            <h3>6. Your Rights</h3>
+                            <p>You have the right to:</p>
+                            <ul>
+                                <li>Access the personal information we hold about you</li>
+                                <li>Request correction of inaccurate information</li>
+                                <li>Request deletion of your account and data</li>
+                                <li>Withdraw consent for data processing</li>
+                                <li>Opt out of marketing communications</li>
+                            </ul>
+                            <p>To exercise these rights, contact us at support@techniserve.com.ng.</p>
+                        </section>
+
+                        <section id="privacy-7">
+                            <h3>7. Cookies & Tracking</h3>
+                            <p>We may use cookies and similar technologies to:</p>
+                            <ul>
+                                <li>Maintain your session when logged in</li>
+                                <li>Remember your preferences</li>
+                                <li>Analyze platform usage patterns</li>
+                            </ul>
+                            <p>You can control cookies through your browser settings, though disabling them may affect platform functionality.</p>
+                        </section>
+
+                        <section id="privacy-8">
+                            <h3>8. Third-Party Services</h3>
+                            <p>Our platform integrates with:</p>
+                            <ul>
+                                <li><strong>WhatsApp:</strong> For direct communication between clients and technicians</li>
+                                <li><strong>Google Fonts:</strong> For typography</li>
+                                <li><strong>Lucide Icons:</strong> For iconography</li>
+                            </ul>
+                            <p>These services have their own privacy policies. We encourage you to review them.</p>
+                        </section>
+
+                        <section id="privacy-9">
+                            <h3>9. Children's Privacy</h3>
+                            <p>TECHNISERVE is not intended for users under 18 years of age. We do not knowingly collect information from children. If you believe a child has provided us with personal information, please contact us immediately.</p>
+                        </section>
+
+                        <section id="privacy-10">
+                            <h3>10. Data Retention</h3>
+                            <p>We retain your information for as long as your account is active or as needed to provide services. Upon account deletion:</p>
+                            <ul>
+                                <li>Personal information is removed within 30 days</li>
+                                <li>Some anonymized data may be retained for analytics</li>
+                                <li>Legal obligations may require longer retention of certain records</li>
+                            </ul>
+                        </section>
+
+                        <section id="privacy-11">
+                            <h3>11. Changes to This Policy</h3>
+                            <p>We may update this Privacy Policy periodically. We will notify registered users of significant changes via email or platform notifications. The "Last updated" date at the top reflects the most recent revision.</p>
+                        </section>
+
+                        <section id="privacy-12">
+                            <h3>12. Contact Our Privacy Team</h3>
+                            <p>For privacy-related questions or concerns:</p>
+                            <ul>
+                                <li><strong>Email:</strong> privacy@techniserve.com.ng</li>
+                                <li><strong>Phone:</strong> +234 800 TECHNISERV</li>
+                                <li><strong>Mail:</strong> TECHNISERVE Privacy Team, Aladinma, Owerri, Imo State, Nigeria</li>
+                            </ul>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="terms-cta">
+    <div class="cta-container">
+        <h2>Still Have Questions?</h2>
+        <p>Our support team is here to help you understand our terms and policies.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('contact') }}" class="btn-primary">
+                <i data-lucide="message-circle"></i>
+                <span>Contact Support</span>
+            </a>
+            <a href="{{ url_for('index') }}" class="btn-secondary">
+                <i data-lucide="home"></i>
+                <span>Back to Home</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/terms.js') }}"></script>
+{% endblock %}

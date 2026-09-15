@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Contract | TECHNISERVE Contracts{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contract-sign.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- LOADING STATE -->
+<div class="sign-loading" id="signLoading">
+    <div class="loading-spinner"></div>
+    <p>Loading your contract...</p>
+</div>
+
+<!-- INVALID TOKEN STATE -->
+<div class="sign-invalid" id="signInvalid" style="display:none;">
+    <div class="invalid-content">
+        <div class="invalid-icon">
+            <i data-lucide="file-x"></i>
+        </div>
+        <h2>Invalid Contract Link</h2>
+        <p>This contract link is invalid or has expired. Please contact TECHNISERVE to get a new signing link.</p>
+        <div class="invalid-actions">
+            <a href="{{ url_for('contract') }}" class="btn-primary">
+                <i data-lucide="arrow-left"></i>
+                <span>Back to Contracts</span>
+            </a>
+            <a href="{{ url_for('contact') }}" class="btn-secondary">
+                <i data-lucide="headphones"></i>
+                <span>Contact Support</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ALREADY SIGNED STATE -->
+<div class="sign-invalid" id="signAlreadySigned" style="display:none;">
+    <div class="invalid-content">
+        <div class="invalid-icon" style="background:rgba(16, 185, 129, 0.1);">
+            <i data-lucide="file-check" style="color:var(--secondary);"></i>
+        </div>
+        <h2>Contract Already Signed</h2>
+        <p>This contract has already been signed and is now being processed. You should receive a confirmation email shortly.</p>
+        <div class="invalid-actions">
+            <a href="{{ url_for('index') }}" class="btn-primary">
+                <i data-lucide="home"></i>
+                <span>Go to Homepage</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN SIGNING CONTENT -->
+<div class="sign-wrapper" id="signWrapper" style="display:none;">
+    
+    <!-- SIGNING HERO -->
+    <section class="sign-hero">
+        <div class="sign-hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Digital Contract Signing</span>
+            </div>
+            <h1>Sign Your <span class="gradient-text">Contract</span></h1>
+            <p class="hero-subtitle">
+                Review the details below and sign digitally to confirm your agreement with TECHNISERVE Contracts.
+            </p>
+            <div class="contract-ref">
+                <i data-lucide="hash"></i>
+                <span>Contract Ref: <strong id="contractRefDisplay">—</strong></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIGNING FORM -->
+    <section class="sign-section">
+        <div class="sign-container">
+            <form id="signForm" class="sign-form">
+                
+                <!-- CONTRACT DETAILS -->
+                <div class="sign-card">
+                    <div class="card-header">
+                        <h2>
+                            <i data-lucide="file-text"></i>
+                            Contract Details
+                        </h2>
+                        <span class="card-badge">Review Only</span>
+                    </div>
+                    
+                    <div class="details-grid">
+                        <div class="detail-section">
+                            <h3>Client Information</h3>
+                            <div class="detail-row">
+                                <span class="detail-label">Full Name</span>
+                                <span class="detail-value" id="detailName">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value" id="detailEmail">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Phone</span>
+                                <span class="detail-value" id="detailPhone">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Country</span>
+                                <span class="detail-value" id="detailCountry">—</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Project Information</h3>
+                            <div class="detail-row">
+                                <span class="detail-label">Project Type</span>
+                                <span class="detail-value" id="detailType">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value" id="detailLocation">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Timeline</span>
+                                <span class="detail-value" id="detailTimeline">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Submitted</span>
+                                <span class="detail-value" id="detailDate">—</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-section full-width">
+                            <h3>Project Description</h3>
+                            <p class="detail-description" id="detailDescription">—</p>
+                        </div>
+
+                        <div class="detail-section full-width" id="buildingPlanSection" style="display:none;">
+                            <h3>Building Plan</h3>
+                            <div class="plan-attachment">
+                                <i data-lucide="paperclip"></i>
+                                <span id="detailPlan">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TERMS & CONDITIONS -->
+                <div class="sign-card">
+                    <div class="card-header">
+                        <h2>
+                            <i data-lucide="scroll-text"></i>
+                            Terms & Conditions
+                        </h2>
+                    </div>
+                    <p class="terms-intro">Please read and accept each term below to proceed with signing.</p>
+                    
+                    <div class="terms-list">
+                        <label class="term-item">
+                            <input type="checkbox" class="term-checkbox" required>
+                            <div class="term-content">
+                                <strong>Scope of Work</strong>
+                                <p>I confirm that the project details above accurately represent the work to be performed by TECHNISERVE Contracts, and I understand that any changes will require a formal variation order.</p>
+                            </div>
+                        </label>
+
+                        <label class="term-item">
+                            <input type="checkbox" class="term-checkbox" required>
+                            <div class="term-content">
+                                <strong>Payment Terms</strong>
+                                <p>I agree to the payment schedule as discussed with TECHNISERVE. I understand that payments are milestone-based and that work will proceed according to the agreed payment plan.</p>
+                            </div>
+                        </label>
+
+                        <label class="term-item">
+                            <input type="checkbox" class="term-checkbox" required>
+                            <div class="term-content">
+                                <strong>Project Timeline</strong>
+                                <p>I acknowledge the project timeline stated above and understand that delays caused by factors beyond TECHNISERVE's control (weather, material shortages, etc.) may affect completion dates.</p>
+                            </div>
+                        </label>
+
+                        <label class="term-item">
+                            <input type="checkbox" class="term-checkbox" required>
+                            <div class="term-content">
+                                <strong>Quality Standards</strong>
+                                <p>TECHNISERVE commits to delivering work that meets industry standards and the specifications discussed. I understand that I have the right to request inspections at key milestones.</p>
+                            </div>
+                        </label>
+
+                        <label class="term-item">
+                            <input type="checkbox" class="term-checkbox" required>
+                            <div class="term-content">
+                                <strong>Dispute Resolution</strong>
+                                <p>Any disputes arising from this contract shall first be addressed through good-faith negotiation, and if unresolved, through the courts of competent jurisdiction in Imo State, Nigeria.</p>
+                            </div>
+                        </label>
+
+                        <label class="term-item">
+                            <input type="checkbox" class="term-checkbox" required>
+                            <div class="term-content">
+                                <strong>Data Protection</strong>
+                                <p>I consent to TECHNISERVE storing my personal data and contract details securely for the duration of the project and as required by law, in accordance with your Privacy Policy.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- DIGITAL SIGNATURE -->
+                <div class="sign-card">
+                    <div class="card-header">
+                        <h2>
+                            <i data-lucide="pen-tool"></i>
+                            Your Signature
+                        </h2>
+                    </div>
+                    <p class="signature-intro">
+                        By signing below, you acknowledge that this digital signature carries the same legal weight as a handwritten signature.
+                    </p>
+
+                    <!-- SIGNATURE METHOD TOGGLE -->
+                    <div class="signature-method">
+                        <button type="button" class="method-btn active" data-method="draw">
+                            <i data-lucide="pen-tool"></i>
+                            <span>Draw Signature</span>
+                        </button>
+                        <button type="button" class="method-btn" data-method="type">
+                            <i data-lucide="type"></i>
+                            <span>Type Name</span>
+                        </button>
+                    </div>
+
+                    <!-- DRAW METHOD -->
+                    <div class="signature-area" id="drawArea">
+                        <div class="signature-pad-wrapper">
+                            <canvas id="signaturePad" class="signature-pad"></canvas>
+                            <div class="signature-placeholder" id="signaturePlaceholder">
+                                <i data-lucide="pen-line"></i>
+                                <span>Sign here using your mouse or finger</span>
+                            </div>
+                        </div>
+                        <div class="signature-actions">
+                            <button type="button" class="clear-btn" id="clearSignature">
+                                <i data-lucide="eraser"></i>
+                                <span>Clear</span>
+                            </button>
+                            <small class="signature-hint">Use your mouse or touch to draw your signature</small>
+                        </div>
+                    </div>
+
+                    <!-- TYPE METHOD -->
+                    <div class="signature-area" id="typeArea" style="display:none;">
+                        <input 
+                            type="text" 
+                            id="typedSignature" 
+                            class="typed-signature-input" 
+                            placeholder="Type your full legal name"
+                        >
+                        <div class="signature-preview" id="signaturePreview" style="display:none;">
+                            <span class="preview-label">Preview:</span>
+                            <span class="preview-signature" id="previewSignature"></span>
+                        </div>
+                        <small class="signature-hint">Your typed name will appear in a formal signature font</small>
+                    </div>
+
+                    <!-- DECLARATION -->
+                    <label class="declaration-checkbox">
+                        <input type="checkbox" id="declarationCheck" required>
+                        <span>
+                            I declare that I am the client named in this contract, that I have read and understood all terms and conditions, and that my signature below constitutes my legally binding agreement to this contract.
+                        </span>
+                    </label>
+
+                    <!-- DATE STAMP -->
+                    <div class="date-stamp">
+                        <i data-lucide="calendar"></i>
+                        <span>Signed on: <strong id="signDate">—</strong></span>
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="btn-submit-contract" id="submitContractBtn">
+                    <span class="btn-text">Sign & Submit Contract</span>
+                    <span class="btn-loader" style="display:none;">
+                        <div class="spinner-small"></div>
+                        <span>Processing...</span>
+                    </span>
+                    <i data-lucide="check-circle" class="btn-icon"></i>
+                </button>
+
+                <p class="sign-disclaimer">
+                    <i data-lucide="shield-check"></i>
+                    This is a legally binding digital signature. By signing, you agree to be bound by the terms of this contract.
+                </p>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- SUCCESS STATE (after signing) -->
+<div class="sign-success" id="signSuccess" style="display:none;">
+    <div class="success-content">
+        <div class="success-icon">
+            <i data-lucide="check-circle-2"></i>
+        </div>
+        <h2>Contract Signed Successfully!</h2>
+        <p>Your contract has been signed and submitted to TECHNISERVE. You will receive a confirmation email shortly with a copy of the signed contract.</p>
+        
+        <div class="success-details">
+            <div class="success-detail">
+                <span>Contract Reference</span>
+                <strong id="successRef">—</strong>
+            </div>
+            <div class="success-detail">
+                <span>Signed On</span>
+                <strong id="successDate">—</strong>
+            </div>
+            <div class="success-detail">
+                <span>Status</span>
+                <strong class="status-active">Active</strong>
+            </div>
+        </div>
+
+        <div class="success-actions">
+        <button class="btn-primary" id="downloadContractBtn">
+            <i data-lucide="download"></i>
+            <span>Download Contract</span>
+        </button>
+        <button class="btn-secondary" id="printContractBtn">
+            <i data-lucide="printer"></i>
+            <span>Print Contract</span>
+        </button>
+        <a href="{{ url_for('index') }}" class="btn-secondary">
+            <i data-lucide="home"></i>
+            <span>Back to Homepage</span>
+        </a>
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.CONTRACT_TOKEN = "{{ token }}";
+</script>
+<script src="{{ url_for('static', filename='js/contract-sign.js') }}"></script>
+{% endblock %}

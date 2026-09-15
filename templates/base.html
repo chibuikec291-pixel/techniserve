@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- PWA Configuration -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TECHNISERVE">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TECHNISERVE | Nigeria's Premier Technical Network{% endblock %}</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide) - Pinned version with fallback CDN -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+<script>
+    // Fallback: If jsdelivr fails, try unpkg
+    if (typeof lucide === 'undefined') {
+        document.write('<script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"><\/script>');
+    }
+</script>
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    
+    <!-- Page Specific Styles -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-ring"></div>
+    </div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="main-navbar">
+    <div class="nav-container">
+        <a href="{{ url_for('index') }}" class="logo">
+            <!-- Replaced the old wrench/hammer icons with the new logo image -->
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo-badge-img"> 
+            <!-- Kept the text exactly as it was -->
+            TECHNI<span class="accent">SERVE</span>
+        </a>
+
+        <nav class="nav-links" id="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('find_pro') }}">Find a Pro</a>
+            <a href="{{ url_for('contract') }}" class="nav-contracts">
+                <i data-lucide="building-2" style="width:14px;height:14px;"></i>
+                Contracts
+            </a>
+            <a href="{{ url_for('about') }}">About Us</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('login') }}" class="nav-login">Login</a>
+            <a href="{{ url_for('join_network') }}" class="nav-cta">Join Network</a>
+            <a href='/client/signup' class="nav-cta">Sign up as a Client</a>
+        </nav>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+            <i data-lucide="menu"></i>
+        </button>
+    </div>
+</header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>TECHNI<span class="accent">SERVE</span></h3>
+                <p>Imo State's most trusted network of verified technical professionals.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="{{ url_for('find_pro') }}">Find a Technician</a>
+                <a href="{{ url_for('join_network') }}">Register as a Pro</a>
+                <a href="{{ url_for('about') }}">About Us</a>
+                <a href="{{ url_for('contract') }}">Contracts</a>
+                <a href="{{ url_for('terms') }}">Terms & Privacy</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Support</h4>
+                <p>support@techniserve.com.ng</p>
+                <p>+234 800 TECHNISERV</p>
+                <p style="margin-top: 12px; font-size: 0.875rem;">📍 Serving Owerri & Imo State</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Techniserve. Proudly serving Imo State.</p>
+        </div>
+    </footer>
+
+    <!-- CUSTOM ALERT MODAL (Must be in DOM before alert.js runs) -->
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-container">
+            <div class="alert-icon" id="alertIcon">
+                <i data-lucide="check-circle"></i>
+            </div>
+            <div class="alert-content">
+                <h3 id="alertTitle">Success</h3>
+                <p id="alertMessage">Your action was completed successfully.</p>
+            </div>
+            <button class="alert-close" id="alertClose">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="alert-progress" id="alertProgress"></div>
+    </div>
+
+    <!-- ==================== SCRIPTS IN CORRECT ORDER ==================== -->
+    
+    <!-- 1. Alert system (must load early so other scripts can use showAlert) -->
+    <script src="{{ url_for('static', filename='js/alert.js') }}"></script>
+    
+    <!-- 2. Auth utilities (needed by login/signup) -->
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    
+    <!-- 3. Page-specific scripts (can use alert.js and auth.js) -->
+    {% block extra_js %}{% endblock %}
+    
+    <!-- 4. Main global JS (menu toggle, preloader) - LOAD ONCE -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- 5. Initialize Lucide icons LAST (after all scripts and DOM ready) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+
+        <!-- Initialize Lucide Icons (with safety check) -->
+    <script>
+        function safeCreateIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                try {
+                    lucide.createIcons();
+                } catch (e) {
+                    console.warn('Lucide icons failed to render:', e);
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', safeCreateIcons);
+        
+        // Expose globally so other scripts can use it
+        window.safeCreateIcons = safeCreateIcons;
+    </script>
+
+    <!-- Register Service Worker for PWA -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/static/service-worker.js')
+        .then(reg => {
+          console.log('✅ Service Worker registered:', reg.scope);
+        })
+        .catch(err => {
+          console.log('❌ Service Worker registration failed:', err);
+        });
+    });
+  }
+</script>
+
+<script>
+    // 1. Detect if the app is ALREADY installed (running in standalone mode)
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+    // 2. Detect iOS devices
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    let deferredPrompt;
+    const installButton = document.getElementById('installPrompt');
+    const iosModal = document.getElementById('iosInstallModal');
+    const closeIosBtn = document.getElementById('closeIosModal');
+
+    if (installButton) {
+        if (isStandalone) {
+            // App is already installed -> Hide button completely
+            installButton.style.display = 'none'; 
+        } else if (isIOS) {
+            // It's an iPhone and NOT installed -> Show button immediately
+            installButton.style.display = 'flex'; 
+            
+            installButton.addEventListener('click', () => {
+                iosModal.style.display = 'flex';
+            });
+        } else {
+            // Android/Desktop -> Wait for the native prompt
+            installButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log(`User response: ${outcome}`);
+                    deferredPrompt = null;
+                    installButton.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    if (closeIosBtn) {
+        closeIosBtn.addEventListener('click', () => {
+            iosModal.style.display = 'none';
+        });
+    }
+
+    // Android/Desktop: Listen for the native install prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Only show the button if it's NOT installed AND NOT iOS
+        if (installButton && !isStandalone && !isIOS) {
+            installButton.style.display = 'flex'; 
+        }
+    });
+
+    // Hide button after successful installation during the session
+    window.addEventListener('appinstalled', () => {
+        console.log('✅ App installed successfully');
+        if (installButton) installButton.style.display = 'none';
+    });
+</script>
+</body>
+</html>

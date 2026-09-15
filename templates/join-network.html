@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Join the Network | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/join-network.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- REGISTRATION HERO -->
+<section class="reg-hero">
+    <div class="reg-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Join 500+ Verified Professionals</span>
+        </div>
+        <h1>Become a <span class="gradient-text">TECHNISERVE Pro</span></h1>
+        <p>Get discovered by clients across Owerri and Imo State. Start receiving job requests today.</p>
+    </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section class="reg-section">
+    <div class="reg-container">
+        <!-- PROGRESS BAR -->
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <span class="step-label">Personal</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <span class="step-label">Professional</span>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <form id="registrationForm" class="reg-form" method="POST">
+            
+            <!-- STEP 1: PERSONAL INFO -->
+            <div class="form-step active" data-step="1">
+                <div class="step-header">
+                    <h2>Let's start with your details</h2>
+                    <p>We need this to verify your identity and contact you.</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="e.g., John Okoro" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nin">
+                            NIN (National ID) <span class="required">*</span>
+                            <span class="help-icon" title="Your NIN helps us verify you're a real professional. It's kept 100% secure.">
+                                <i data-lucide="info"></i>
+                            </span>
+                        </label>
+                        <input type="text" id="nin" name="nin" placeholder="11-digit NIN" maxlength="11" pattern="[0-9]{11}" required>
+                        <small class="form-hint">11 digits only. We keep this secure.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="080..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                        <small class="form-hint">Used for password recovery & notifications.</small>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="whatsapp">WhatsApp Number <span class="required">*</span></label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="234..." required>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="sameAsPhone">
+                            <span>Same as phone number</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-next" data-next="2">
+                        Continue
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: PROFESSIONAL INFO -->
+            <div class="form-step" data-step="2">
+                <div class="step-header">
+                    <h2>Tell us about your skills</h2>
+                    <p>Help clients find you by describing what you do best.</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="skill">Main Skill Category <span class="required">*</span></label>
+                        <select id="skill" name="skill" required>
+                            <option value="">Select your main skill...</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Solar">Solar</option>
+                            <option value="Electrical & Solar">Electrical & Solar</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Automotive">Automobile & Mechanical</option>
+                            <option value="Furniture">Furniture & Carpentry</option>
+                            <option value="Curtains">Curtain Installation</option>
+                            <option value="POP & Screeding">POP, Screeding</option>
+                            <option value="Painting">Painting</option>
+                            <option value="AC & Refrigerator">AC & Refrigerator</option>
+                            <option value="CCTV">CCTV & Security</option>
+                            <option value="Automation">Automation & Control Systems</option>
+                            <option value="Generator">Generator Repair</option>
+                            <option value="Almaco">Aluminium glass doors and windows</option>
+                            <option value="Welding">Welding</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialty">Specialty <span class="required">*</span></label>
+                        <select id="specialty" name="specialty" required disabled>
+                            <option value="">Select your main skill first...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Years of Experience <span class="required">*</span></label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select experience level...</option>
+                            <option value="1-2">1 - 2 years</option>
+                            <option value="3-5">3 - 5 years</option>
+                            <option value="6-10">6 - 10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="location">Your Service Area <span class="required">*</span></label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Aladinma, Owerri" list="location-suggestions" required>
+                        <datalist id="location-suggestions">
+                            <option value="Aladinma, Owerri">
+                            <option value="World Bank, Owerri">
+                            <option value="Ikenegbu, Owerri">
+                            <option value="Works Layout, Owerri">
+                            <option value="New Owerri, Owerri">
+                            <option value="MCC, Owerri">
+                            <option value="Toronto, Owerri">
+                            <option value="Orji, Owerri">
+                            <option value="Amakohia, Owerri">
+                            <option value="Ohi, Owerri">
+                            <option value="Irete, Owerri">
+                            <option value="Ogbaku, Owerri">
+                            <option value="Port-harcourt road, Owerri">
+                            <option value="Uratta, Owerri">
+                            <option value="Imsu, Owerri">
+                            <option value="Ulakwo, Owerri">
+                            <option value="FUTO, Owerri">
+                            <option value="Naze, Owerri">
+                            <option value="Poly Nekede, Owerri">
+                            <option value="Agbala, Owerri">
+                            <option value="Avu, Owerri">
+                            <option value="Obinze, Owerri">
+                            <option value="Nekede, Owerri">
+                            <option value="Orlu">
+                            <option value="Okigwe">
+                            <option value="Mbaise">
+                        </datalist>
+                        <small class="form-hint">Where do you primarily work?</small>
+                    </div>
+                </div>
+
+                <!-- TERMS -->
+                <div class="terms-section">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms" required>
+                        <span>I agree to the <a href="{{ url_for('terms') }}" class="terms-link" target="_blank">Terms of Service</a> and confirm all information is accurate.</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-back" data-back="1">
+                        <i data-lucide="arrow-left"></i>
+                        Back
+                    </button>
+                    <button type="submit" class="btn-submit">
+                        <i data-lucide="check-circle"></i>
+                        Submit Application
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/join-network.js') }}"></script>
+{% endblock %}

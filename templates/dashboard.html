@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <!-- SIDEBAR (Desktop) -->
+    <aside class="dashboard-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-profile">
+                <div class="sidebar-avatar" id="sidebarAvatar">
+                    <i data-lucide="user"></i>
+                </div>
+                <div class="sidebar-info">
+                    <h3 id="sidebarName">Loading...</h3>
+                    <span class="status-badge" id="sidebarStatus">
+                        <i data-lucide="shield-check"></i>
+                        <span>Verified Pro</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-tab="profile">
+                <i data-lucide="user"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="jobs">
+                <i data-lucide="briefcase"></i>
+                <span>Job Requests</span>
+                <span class="nav-badge" id="jobsBadge" style="display:none;">0</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="gallery">
+                <i data-lucide="image"></i>
+                <span>My Portfolio</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="payments">
+                <i data-lucide="wallet"></i>
+                <span>Payments</span>
+            </a>
+            <a href="#" class="nav-item" data-tab="settings">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-btn" id="logoutBtn">
+                <i data-lucide="log-out"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+        <!-- MOBILE TOP BAR -->
+        <div class="mobile-topbar">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i data-lucide="menu"></i>
+            </button>
+            <h2>My Dashboard</h2>
+            <div class="mobile-avatar" id="mobileAvatar">
+                <i data-lucide="user"></i>
+            </div>
+        </div>
+
+        <!-- MOBILE TAB NAV -->
+        <div class="mobile-tabs" id="mobileTabs">
+            <a href="#" class="mobile-tab active" data-tab="profile">
+                <i data-lucide="user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="#" class="mobile-tab" data-tab="jobs">
+                <i data-lucide="briefcase"></i>
+                <span>Jobs</span>
+            </a>
+            <a href="#" class="mobile-tab" data-tab="gallery">
+                <i data-lucide="image"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="#" class="mobile-tab" data-tab="payments">
+                <i data-lucide="wallet"></i>
+                <span>Pay</span>
+            </a>
+            <a href="#" class="mobile-tab" data-tab="settings">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+
+        <!-- ==================== PROFILE TAB ==================== -->
+        <div class="tab-content active" data-tab="profile">
+            <div class="tab-header">
+                <h1>My Profile</h1>
+                <p>Manage your personal and professional information</p>
+            </div>
+
+            <!-- PROFILE PICTURE SECTION -->
+            <div class="dashboard-card profile-card">
+                <div class="card-header">
+                    <h2>Profile Picture</h2>
+                    <p>This is how clients will see you</p>
+                </div>
+                <div class="profile-picture-section">
+                    <div class="profile-pic-container" id="profilePicContainer">
+                        <div class="profile-pic-placeholder" id="profilePlaceholder">
+                            <i data-lucide="camera"></i>
+                            <span>Add Photo</span>
+                        </div>
+                        <img id="profilePreview" class="profile-preview-img" style="display:none;" alt="Profile">
+                        <label for="profilePicInput" class="upload-overlay">
+                            <i data-lucide="upload"></i>
+                            <span>Change Photo</span>
+                        </label>
+                        <input type="file" id="profilePicInput" accept="image/*" style="display:none;">
+                    </div>
+                    <div class="profile-pic-info">
+                        <h3>Upload a professional photo</h3>
+                        <p>Clear, well-lit photos help clients trust you. JPG or PNG, max 5MB.</p>
+                        <button type="button" class="btn-remove" id="removeProfilePic" style="display:none;">
+                            <i data-lucide="trash-2"></i>
+                            Remove Photo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- AVAILABILITY STATUS -->
+            <div class="availability-section">
+                <div class="availability-header">
+                    <h3>
+                        <i data-lucide="radio"></i>
+                        Availability Status
+                    </h3>
+                    <span id="availabilityBadge" class="availability-badge available">
+                        <span class="status-dot"></span>
+                        Available
+                    </span>
+                </div>
+                <select id="availabilityToggle" class="availability-select">
+                    <option value="available">🟢 Available - Accepting new jobs</option>
+                    <option value="busy">🟡 Busy - Currently working</option>
+                    <option value="offline">🔴 Offline - Not accepting jobs</option>
+                </select>
+                <small class="availability-hint">
+                    Clients will see your status on your profile and search results
+                </small>
+            </div>
+
+            <!-- PERSONAL INFO -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Personal Information</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <p id="info-fullName">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>NIN</label>
+                        <p id="info-nin">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone Number</label>
+                        <p id="info-phone">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>WhatsApp</label>
+                        <p id="info-whatsapp">—</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFESSIONAL INFO -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Professional Information</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Main Skill</label>
+                        <p id="info-skill">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Specialty</label>
+                        <p id="info-specialty">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Experience</label>
+                        <p id="info-experience">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Service Area</label>
+                        <p id="info-location">
+                            <i data-lucide="map-pin" class="inline-icon"></i>
+                            <span>—</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCOUNT INFO -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Account Information</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Member Since</label>
+                        <p id="info-registeredAt">—</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Account Status</label>
+                        <p id="info-status">
+                            <span class="status-pill active">Active</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== JOBS TAB ==================== -->
+        <div class="tab-content" data-tab="jobs">
+            <div class="tab-header">
+                <h1>Job Requests</h1>
+                <p>Incoming requests from clients in your area</p>
+            </div>
+
+            <div class="jobs-stats">
+                <div class="stat-card">
+                    <div class="stat-icon new">
+                        <i data-lucide="bell"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-new">0</h3>
+                        <p>New Requests</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon active">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-active">0</h3>
+                        <p>Active Jobs</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon completed">
+                        <i data-lucide="check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-completed">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jobs-list" id="jobsList">
+                <div class="empty-state-inline" id="jobsEmptyState">
+                    <i data-lucide="inbox"></i>
+                    <h3>No Job Requests Yet</h3>
+                    <p>When clients book your services, their requests will appear here in real-time.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== GALLERY TAB ==================== -->
+        <div class="tab-content" data-tab="gallery">
+            <div class="tab-header">
+                <h1>My Portfolio</h1>
+                <p>Showcase your best work to attract more clients</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div>
+                        <h2>Recent Job Photos</h2>
+                        <p>Upload up to 5 photos of your recent projects</p>
+                    </div>
+                    <div class="gallery-counter">
+                        <span id="galleryCount">0</span>/5
+                    </div>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- CHANGED: Label to Div to fix click conflict -->
+                    <div class="gallery-add-btn" id="galleryAddBtn">
+                        <i data-lucide="plus"></i>
+                        <span>Add Photo</span>
+                    </div>
+                    <!-- Moved input outside the button -->
+                    <input type="file" id="galleryInput" accept="image/*" multiple style="display:none;">
+                </div>
+
+                <div class="gallery-tips">
+                    <h3><i data-lucide="lightbulb"></i> Tips for great photos</h3>
+                    <ul>
+                        <li>Take photos in good lighting</li>
+                        <li>Show the finished project clearly</li>
+                        <li>Include before/after shots when possible</li>
+                        <li>Make sure photos are in focus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PAYMENTS TAB ==================== -->
+        <div class="tab-content" data-tab="payments">
+            <div class="tab-header">
+                <h1>Payments</h1>
+                <p>Track your earnings and payment history</p>
+            </div>
+
+            <div class="payments-overview">
+                <div class="payment-card primary">
+                    <div class="payment-label">Available Balance</div>
+                    <div class="payment-amount" id="payment-balance">₦0.00</div>
+                    <button class="btn-withdraw" disabled>
+                        <i data-lucide="arrow-up-right"></i>
+                        Withdraw
+                    </button>
+                </div>
+                <div class="payment-card">
+                    <div class="payment-label">This Month</div>
+                    <div class="payment-amount" id="payment-month">₦0.00</div>
+                </div>
+                <div class="payment-card">
+                    <div class="payment-label">All Time</div>
+                    <div class="payment-amount" id="payment-total">₦0.00</div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Payment History</h2>
+                </div>
+                <div class="empty-state-inline">
+                    <i data-lucide="receipt"></i>
+                    <h3>No Payments Yet</h3>
+                    <p>Complete jobs to start earning. Your payment history will appear here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== SETTINGS TAB ==================== -->
+        <div class="tab-content" data-tab="settings">
+            <div class="tab-header">
+                <h1>Settings</h1>
+                <p>Manage your account preferences</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Account Settings</h2>
+                </div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <i data-lucide="bell"></i>
+                            <div>
+                                <h3>Notifications</h3>
+                                <p>Receive alerts for new job requests</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <h3>Location Services</h3>
+                                <p>Allow location access for nearby jobs</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <i data-lucide="eye"></i>
+                            <div>
+                                <h3>Profile Visibility</h3>
+                                <p>Show your profile in search results</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card danger">
+                <div class="card-header">
+                    <h2>Danger Zone</h2>
+                </div>
+                <div class="danger-actions">
+                    <button class="btn-danger" id="deactivateBtn">
+                        <i data-lucide="user-x"></i>
+                        Deactivate Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- MOBILE SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

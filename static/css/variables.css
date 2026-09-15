@@ -1,0 +1,44 @@
+:root {
+    /* --- COLOR PALETTE --- */
+    /* Backgrounds */
+    --bg-light: #F8FAFC;
+    --bg-dark: #0F172A;
+    --bg-card: #FFFFFF;
+    
+    /* Brand Colors */
+    --primary: #2563EB;       /* Electric Royal Blue (Trust) */
+    --primary-hover: #1D4ED8;
+    --secondary: #10B981;     /* Neon Emerald (Success/Verified) */
+    --secondary-hover: #059669;
+    
+    /* Text Colors */
+    --text-dark: #0F172A;
+    --text-muted: #64748B;
+    --text-light: #F8FAFC;
+    --accent-text: var(--primary);
+
+    /* Borders & Shadows */
+    --border-light: #E2E8F0;
+    --border-dark: #1E293B;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.2);
+
+    /* --- TYPOGRAPHY --- */
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* --- SPACING & LAYOUT --- */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+    
+    --container-max: 1200px;
+    --nav-height: 80px;
+
+    /* --- TRANSITIONS --- */
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

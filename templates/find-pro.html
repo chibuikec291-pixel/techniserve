@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if service and location %}
+        {{ service }} in {{ location }} | TECHNISERVE
+    {% else %}
+        Find a Technician | TECHNISERVE
+    {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/find-pro.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- RESULTS HEADER -->
+<section class="results-hero">
+    <div class="results-container">
+        <div class="results-header">
+            <h1 id="resultsTitle">
+                {% if service and location %}
+                    {{ service }} Specialists in <span class="accent">{{ location }}</span>
+                {% else %}
+                    Available Technicians
+                {% endif %}
+            </h1>
+            <p id="resultsSubtitle">
+                {% if service and location %}
+                    Verified professionals ready to help you today
+                {% else %}
+                    Search for a service to find technicians near you
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label for="sortBy">Sort by:</label>
+                <select id="sortBy">
+                    <option value="rating">Highest Rated</option>
+                    <option value="distance">Nearest First</option>
+                    <option value="available">Available Now</option>
+                </select>
+            </div>
+
+            <div class="results-count">
+                <span id="techCount">0</span> technicians found
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNICIANS GRID -->
+<section class="results-section">
+    <div class="results-container">
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Finding the best technicians for you...</p>
+        </div>
+
+        <!-- Technicians Grid -->
+        <div id="techGrid" class="tech-grid"></div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="empty-icon">
+                <i data-lucide="search-x"></i>
+            </div>
+            <h2>No Technicians Found</h2>
+            <p id="emptyMessage">
+                We couldn't find any technicians matching your search. Try:
+            </p>
+            <ul class="empty-tips">
+                <li>Searching for a different service</li>
+                <li>Checking your location spelling</li>
+                <li>Expanding your search to nearby areas</li>
+            </ul>
+            <a href="{{ url_for('index') }}" class="btn-primary">
+                <i data-lucide="arrow-left"></i>
+                <span>Search Again</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/find-pro.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics Dashboard | TECHNISERVE Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin-analytics.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- ANALYTICS HERO -->
+<section class="analytics-hero">
+    <div class="analytics-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Real-Time Platform Insights</span>
+        </div>
+        <h1>Analytics <span class="gradient-text">Dashboard</span></h1>
+        <p>Monitor your platform's performance and growth in real-time</p>
+    </div>
+</section>
+
+<!-- ANALYTICS SECTION -->
+<section class="analytics-section">
+    <div class="analytics-container">
+        
+        <!-- OVERVIEW STATS -->
+        <div class="stats-grid" id="statsGrid">
+            <!-- Stats will be populated by JS -->
+        </div>
+
+        <!-- CHARTS ROW -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>
+                        <i data-lucide="trending-up"></i>
+                        Technician Growth (2026)
+                    </h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>
+                        <i data-lucide="pie-chart"></i>
+                        Job Status Distribution
+                    </h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="jobChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- POPULAR SKILLS -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <h2>
+                    <i data-lucide="award"></i>
+                    Top 10 Most Popular Skills
+                </h2>
+            </div>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- RECENT ACTIVITY -->
+        <div class="activity-section">
+            <div class="activity-grid">
+                <!-- Recent Technicians -->
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h2>
+                            <i data-lucide="users"></i>
+                            Recent Technician Registrations
+                        </h2>
+                    </div>
+                    <div class="activity-list" id="recentTechnicians">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Recent Jobs -->
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h2>
+                            <i data-lucide="briefcase"></i>
+                            Recent Job Postings
+                        </h2>
+                    </div>
+                    <div class="activity-list" id="recentJobs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Recent Contracts -->
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h2>
+                            <i data-lucide="file-text"></i>
+                            Recent Contracts
+                        </h2>
+                    </div>
+                    <div class="activity-list" id="recentContracts">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Recent Reviews -->
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h2>
+                            <i data-lucide="star"></i>
+                            Recent Reviews
+                        </h2>
+                    </div>
+                    <div class="activity-list" id="recentReviews">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOOKING TRENDS CHART -->
+<div class="chart-card">
+    <div class="chart-header">
+        <h2>
+            <i data-lucide="calendar"></i>
+            Monthly Booking Trends (2026)
+        </h2>
+    </div>
+    <div class="chart-container">
+        <canvas id="bookingTrendsChart"></canvas>
+    </div>
+</div>
+
+<!-- BOOKING SOURCE DISTRIBUTION -->
+<div class="charts-row">
+    <div class="chart-card">
+        <div class="chart-header">
+            <h2>
+                <i data-lucide="git-branch"></i>
+                Booking Sources
+            </h2>
+        </div>
+        <div class="chart-container">
+            <canvas id="bookingSourceChart"></canvas>
+        </div>
+    </div>
+    
+    <div class="chart-card">
+        <div class="chart-header">
+            <h2>
+                <i data-lucide="trophy"></i>
+                Top Performing Technicians
+            </h2>
+        </div>
+        <div class="top-technicians-list" id="topTechniciansList">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/admin-analytics.js') }}"></script>
+{% endblock %}

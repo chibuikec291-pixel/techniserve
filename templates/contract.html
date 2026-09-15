@@ -1,0 +1,449 @@
+{% extends "base.html" %}
+
+{% block title %}TECHNISERVE Contracts | End-to-End Project Management{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contract.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- CONTRACT HERO -->
+<section class="contract-hero">
+    <div class="contract-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Premium Contracting Service</span>
+        </div>
+        <h1>
+            <span class="brand-text">TECHNISERVE</span><br>
+            <span class="gradient-text">Contracts</span>
+        </h1>
+        <p class="hero-subtitle">
+            End-to-end project management for your building, renovation, or finishing project. 
+            One trusted partner. Zero stress. From foundation to finishing — we handle it all.
+        </p>
+        <div class="hero-cta">
+            <a href="#booking-form" class="btn-primary-large">
+                <i data-lucide="file-signature"></i>
+                <span>Start Your Project</span>
+            </a>
+            <a href="#how-it-works" class="btn-secondary-large">
+                <i data-lucide="info"></i>
+                <span>How It Works</span>
+            </a>
+        </div>
+        <div class="hero-trust">
+            <div class="trust-item">
+                <i data-lucide="shield-check"></i>
+                <span>Verified Professionals</span>
+            </div>
+            <div class="trust-item">
+                <i data-lucide="clock"></i>
+                <span>On-Time Delivery</span>
+            </div>
+            <div class="trust-item">
+                <i data-lucide="globe"></i>
+                <span>Diaspora Friendly</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT TYPES -->
+<section class="project-types-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Projects We Handle</h2>
+            <p>From ground-breaking to final touches — we manage every type of construction project</p>
+        </div>
+    <div class="project-types-grid">
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="building"></i>
+            </div>
+            <h3>New Building</h3>
+            <p>Complete construction from foundation to finishing</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="hammer"></i>
+            </div>
+            <h3>Renovation</h3>
+            <p>Transform and upgrade existing structures</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="paintbrush"></i>
+            </div>
+            <h3>Finishing Only</h3>
+            <p>Premium interior and exterior finishing</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="armchair"></i>
+            </div>
+            <h3>Interior Decoration</h3>
+            <p>Complete interior design, furnishing & styling</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="zap"></i>
+            </div>
+            <h3>Electrical Contracts</h3>
+            <p>Complete electrical systems for any building</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="sun"></i>
+            </div>
+            <h3>Solar Contracts</h3>
+            <p>Full solar power system design & installation</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="droplets"></i>
+            </div>
+            <h3>Plumbing Contracts</h3>
+            <p>Comprehensive plumbing for residential & commercial</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="palette"></i>
+            </div>
+            <h3>Painting Contracts</h3>
+            <p>Professional interior & exterior painting</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="layers"></i>
+            </div>
+            <h3>POP & Screeding</h3>
+            <p>Premium ceiling and floor finishing</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="trees"></i>
+            </div>
+            <h3>Landscaping & Compound</h3>
+            <p>Gardens, driveways, fences & compound finishing</p>
+        </div>
+        <div class="project-type-card">
+            <div class="project-icon">
+                <i data-lucide="door-open"></i>
+            </div>
+            <h3>Aluminum & Glass Works</h3>
+            <p>Windows, doors, partitions & facades</p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works-section" id="how-it-works">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>A simple 4-step process from inquiry to project completion</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <div class="step-icon">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <h3>Submit Your Project</h3>
+                <p>Fill out our booking form with your project details, timeline, and location.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <div class="step-icon">
+                    <i data-lucide="phone-call"></i>
+                </div>
+                <h3>We Reach Out</h3>
+                <p>Our team contacts you within 24 hours via call, email, or WhatsApp.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <div class="step-icon">
+                    <i data-lucide="clipboard-list"></i>
+                </div>
+                <h3>Discussion & Planning</h3>
+                <p>We discuss scope, conduct site visits (if needed), and provide a detailed quote.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <div class="step-icon">
+                    <i data-lucide="file-check"></i>
+                </div>
+                <h3>Sign & Begin</h3>
+                <p>Sign the contract digitally (or physically) and we start your project immediately.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PAST PROJECTS -->
+<section class="past-projects-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Recent Projects</h2>
+            <p>A glimpse of projects we've successfully delivered across Imo State</p>
+        </div>
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="booking-section" id="booking-form">
+    <div class="section-container">
+        <div class="booking-layout">
+            <!-- FORM -->
+            <div class="booking-form-wrapper">
+                <div class="form-card">
+                    <div class="form-header">
+                        <div class="form-icon">
+                            <i data-lucide="file-signature"></i>
+                        </div>
+                        <h2>Start Your Project</h2>
+                        <p>Fill in your details and we'll get back to you within 24 hours</p>
+                    </div>
+
+                    <form id="contractForm" class="contract-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clientName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="clientName" name="clientName" placeholder="John Okoro" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="clientEmail" name="clientEmail" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clientPhone">Phone / WhatsApp <span class="required">*</span></label>
+                                <input type="tel" id="clientPhone" name="clientPhone" placeholder="+234..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientCountry">Country <span class="required">*</span></label>
+                                <select id="clientCountry" name="clientCountry" required>
+                                    <option value="">Select country...</option>
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Ireland">Ireland</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="Ghana">Ghana</option>
+                                    <option value="UAE">UAE</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectType">Project Type <span class="required">*</span></label>
+                                <select id="projectType" name="projectType" required>
+                                    <option value="">Select project type...</option>
+                                    <option value="New Building">New Building (scratch to finish)</option>
+                                    <option value="Renovation">Renovation</option>
+                                    <option value="Finishing Only">Finishing Only</option>
+                                    <option value="Interior Decoration">Interior Decoration Contract</option>
+                                    <option value="Electrical Contract">General Electrical Contract</option>
+                                    <option value="Solar Contract">Solar Installation Contract</option>
+                                    <option value="Automation">Automation & Control Systems</option>
+                                    <option value="Plumbing Contract">Plumbing Contract</option>
+                                    <option value="Painting Contract">Painting Contract</option>
+                                    <option value="POP & Screeding">POP & Screeding Contract</option>
+                                    <option value="Landscaping & Compound">Landscaping & Compound Finishing</option>
+                                    <option value="Aluminum & Glass Works">Aluminum & Glass Works Contract</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectTimeline">Timeline <span class="required">*</span></label>
+                                <select id="projectTimeline" name="projectTimeline" required>
+                                    <option value="">Select timeline...</option>
+                                    <option value="ASAP">ASAP (Urgent)</option>
+                                    <option value="1-3 months">1 - 3 months</option>
+                                    <option value="3-6 months">3 - 6 months</option>
+                                    <option value="6-12 months">6 - 12 months</option>
+                                    <option value="Flexible">Flexible / No rush</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="projectLocation">Project Location <span class="required">*</span></label>
+                            <input type="text" id="projectLocation" name="projectLocation" placeholder="e.g., Aladinma, Owerri, Imo State" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="projectDescription">Brief Project Description</label>
+                            <textarea id="projectDescription" name="projectDescription" rows="4" placeholder="Tell us about your project (size, specific requirements, etc.)"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="buildingPlan">
+                                Building Plan Upload
+                                <span class="optional">(Optional — for new buildings)</span>
+                            </label>
+                            <div class="file-upload" id="fileUpload">
+                                <input type="file" id="buildingPlan" name="buildingPlan" accept=".pdf,.jpg,.jpeg,.png" style="display:none;">
+                                <div class="file-upload-content" id="fileUploadContent">
+                                    <i data-lucide="upload-cloud"></i>
+                                    <span>Click to upload or drag & drop</span>
+                                    <small>PDF, JPG, PNG (Max 10MB)</small>
+                                </div>
+                                <div class="file-preview" id="filePreview" style="display:none;">
+                                    <i data-lucide="file"></i>
+                                    <span id="fileName"></span>
+                                    <button type="button" class="remove-file" id="removeFile">
+                                        <i data-lucide="x"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit-large" id="submitBtn">
+                            <span class="btn-text">Submit Project Request</span>
+                            <span class="btn-loader" style="display:none;">
+                                <div class="spinner-small"></div>
+                                <span>Submitting...</span>
+                            </span>
+                            <i data-lucide="arrow-right" class="btn-icon"></i>
+                        </button>
+
+                        <p class="form-disclaimer">
+                            By submitting, you agree to be contacted by TECHNISERVE regarding your project. 
+                            We'll never share your information with third parties.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CONTACT SIDEBAR -->
+            <aside class="contact-sidebar">
+                <div class="contact-card">
+                    <h3>
+                        <i data-lucide="headphones"></i>
+                        Prefer to Talk?
+                    </h3>
+                    <p>Reach out directly — we're here to help.</p>
+
+                    <div class="contact-methods">
+                        <a href="tel:+2348144104478" class="contact-method">
+                            <div class="contact-icon">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-info">
+                                <strong>Call Us</strong>
+                                <span>+234 800 TECHNISERV</span>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/2348012345678?text=Hello%20TECHNISERVE%2C%20I%27m%20interested%20in%20your%20contracting%20services." target="_blank" class="contact-method whatsapp">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-info">
+                                <strong>WhatsApp</strong>
+                                <span>+234 8144104478</span>
+                            </div>
+                        </a>
+
+                        <a href="mailto:contracts@techniserve.com.ng" class="contact-method">
+                            <div class="contact-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-info">
+                                <strong>Email</strong>
+                                <span>contracts@techniserve.com.ng</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SOCIAL MEDIA -->
+                <div class="social-card">
+                    <h3>Follow Us</h3>
+                    <p>Stay updated with our latest projects</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/techniserve" target="_blank" class="social-link" aria-label="Instagram">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/techniserve" target="_blank" class="social-link" aria-label="Facebook">
+                            <i data-lucide="facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/techniserve" target="_blank" class="social-link" aria-label="Twitter">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/techniserve" target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- OFFICE LOCATION -->
+                <div class="office-card">
+                    <h3>
+                        <i data-lucide="map-pin"></i>
+                        Visit Our Office
+                    </h3>
+                    <p>Aladinma, Owerri<br>Imo State, Nigeria</p>
+                    <small>Mon - Sat: 8am - 6pm</small>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- DIASPORA CTA -->
+<section class="diaspora-section">
+    <div class="section-container">
+        <div class="diaspora-content">
+            <div class="diaspora-text">
+                <div class="diaspora-badge">
+                    <i data-lucide="globe"></i>
+                    <span>For Nigerians in Diaspora</span>
+                </div>
+                <h2>Building Back Home? <span class="gradient-text">We've Got You.</span></h2>
+                <p>
+                    Living abroad but building in Nigeria? We understand the challenges — 
+                    distance, trust, and coordination. TECHNISERVE Contracts is designed specifically 
+                    for diaspora clients. We become your eyes, ears, and hands on the ground, 
+                    delivering your project to the exact standard you expect.
+                </p>
+                <ul class="diaspora-benefits">
+                    <li>
+                        <i data-lucide="video"></i>
+                        <span>Regular video updates & site visits</span>
+                    </li>
+                    <li>
+                        <i data-lucide="file-signature"></i>
+                        <span>Digital contract signing from anywhere</span>
+                    </li>
+                    <li>
+                        <i data-lucide="shield-check"></i>
+                        <span>Verified professionals, transparent pricing</span>
+                    </li>
+                    <li>
+                        <i data-lucide="clock"></i>
+                        <span>Timezone-friendly communication</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/contract.js') }}"></script>
+{% endblock %}

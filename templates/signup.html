@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Create Password | TECHNISERVE{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="signup-hero">
+    <div class="signup-hero-content">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Final Step</span>
+        </div>
+        <h1>Create Your <span class="gradient-text">Secure Password</span></h1>
+        <p>Almost there! Set up a strong password to secure your account.</p>
+    </div>
+</section>
+
+<section class="signup-section">
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="card-header">
+                <div class="header-icon">
+                    <i data-lucide="key"></i>
+                </div>
+                <h2>Set Your Password</h2>
+                <p>Choose a strong password with at least 6 characters</p>
+            </div>
+
+            <form id="signupForm" class="signup-form">
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-with-icon">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Create a strong password" 
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                        >
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <i data-lucide="eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Password strength</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        Confirm Password
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-with-icon">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Confirm your password" 
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                        >
+                        <button type="button" class="password-toggle" id="confirmPasswordToggle">
+                            <i data-lucide="eye" id="confirmEyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="password-requirements">
+                    <h4>Password must contain:</h4>
+                    <ul>
+                        <li id="req-length">At least 6 characters</li>
+                        <li id="req-uppercase">One uppercase letter</li>
+                        <li id="req-number">One number</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="btn-signup" id="signupBtn">
+                    <span class="btn-text">Complete Registration</span>
+                    <span class="btn-loader" style="display:none;">
+                        <div class="spinner-small"></div>
+                        <span>Creating account...</span>
+                    </span>
+                    <i data-lucide="check-circle" class="btn-icon"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{% endblock %}
