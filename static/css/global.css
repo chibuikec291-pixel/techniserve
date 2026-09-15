@@ -37,7 +37,6 @@ img {
 
 .accent {
     color: var(--primary);
-    
 }
 
 /* --- PRELOADER --- */
@@ -118,12 +117,11 @@ img {
     border: 1px solid rgba(37, 99, 235, 0.3);
 }
 
-    /* Style for the new navbar logo image */
-    .logo-badge-img {
-        height: 32px; /* Adjust this number up or down to match your navbar height */
-        width: auto;
-        object-fit: contain;
-    }
+.logo-badge-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
 
 .logo-tool {
     position: absolute;
@@ -143,10 +141,11 @@ img {
     z-index: 1;
 }
 
+/* --- UPDATED NAVBAR LINKS --- */
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 20px; /* Reduced from 32px to fit all items cleanly on desktop */
 }
 
 .nav-links a {
@@ -176,7 +175,8 @@ img {
     color: var(--primary);
 }
 
-.nav-cta {
+/* Primary CTA (Solid, for "Join Network") */
+.nav-cta-primary {
     background: var(--primary);
     color: white !important;
     opacity: 1 !important;
@@ -184,10 +184,28 @@ img {
     border-radius: var(--radius-full);
     font-weight: 600;
     box-shadow: var(--shadow-glow);
+    white-space: nowrap; /* Prevents text from breaking into two lines */
 }
 
-.nav-cta:hover {
+.nav-cta-primary:hover {
     background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Secondary CTA (Outline, for "Sign up as a Client") */
+.nav-cta-secondary {
+    background: transparent;
+    color: var(--primary) !important;
+    opacity: 1 !important;
+    padding: 10px 20px;
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    white-space: nowrap; /* Prevents text from breaking into two lines */
+}
+
+.nav-cta-secondary:hover {
+    background: rgba(37, 99, 235, 0.1); /* Light blue tint on hover */
     transform: translateY(-2px);
 }
 
@@ -420,25 +438,6 @@ img {
     background: var(--primary);
 }
 
-.nav-contracts {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--text-light) !important;
-    opacity: 0.9 !important;
-    padding: 8px 16px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
-    border: 1px solid rgba(37, 99, 235, 0.3);
-    border-radius: var(--radius-full);
-    font-weight: 600;
-}
-
-.nav-contracts:hover {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
-    border-color: var(--primary);
-    opacity: 1 !important;
-}
-
 @keyframes progressShrink {
     from {
         transform: scaleX(1);
@@ -448,7 +447,7 @@ img {
     }
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments for Alert */
 @media (max-width: 640px) {
     .custom-alert {
         top: 80px;
@@ -494,6 +493,33 @@ img {
     .logo span {
         font-size: 1.1rem; /* Slightly smaller text on mobile */
     }
+    
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        background: var(--bg-dark);
+        flex-direction: column;
+        padding: 32px;
+        gap: 24px;
+        transform: translateY(-150%);
+        transition: var(--transition-smooth);
+        border-bottom: 1px solid var(--border-dark);
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
 }
 
 /* ============================================
@@ -510,10 +536,8 @@ img {
     
     .logo span {
         font-size: 1.35rem; /* Smaller text */
-        
     }
     
-    /* If navbar is in mobile menu mode, center the logo */
     .nav-container {
         padding: 0 16px;
     }
@@ -557,34 +581,3 @@ img {
         height: 42px; /* Slightly larger for big screens */
     }
 }
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: var(--nav-height);
-        left: 0;
-        width: 100%;
-        background: var(--bg-dark);
-        flex-direction: column;
-        padding: 32px;
-        gap: 24px;
-        transform: translateY(-150%);
-        transition: var(--transition-smooth);
-        border-bottom: 1px solid var(--border-dark);
-    }
-
-    .nav-links.active {
-        transform: translateY(0);
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-}
-
