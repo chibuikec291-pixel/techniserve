@@ -109,7 +109,10 @@ img {
    ========================================================= */
 
 .nav-container {
-    max-width: var(--container-max);
+    width: 100%;
+    /* max-width: var(--container-max);
+     */
+     max-width: 1440px;
     margin: 0 auto;
     padding: 0 24px;
 
@@ -118,6 +121,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 0;
 }
 
 
