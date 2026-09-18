@@ -66,7 +66,7 @@ img {
 .loader-ring {
     width: 50px;
     height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.1);
+    border: 4px solid rgba(255,255,255,0.1);
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -80,7 +80,7 @@ img {
 
 
 /* =========================================================
-   NAVBAR - GLASSMORPHISM
+   NAVBAR
    ========================================================= */
 
 .navbar {
@@ -90,6 +90,7 @@ img {
     width: 100%;
     height: var(--nav-height);
     z-index: 1000;
+
     transition: var(--transition-smooth);
 
     background: rgba(15, 23, 42, 0.8);
@@ -103,20 +104,20 @@ img {
 
 /* =========================================================
    NAV CONTAINER
+   IMPORTANT:
+   This remains compatible with the original mobile layout.
    ========================================================= */
 
 .nav-container {
-    width: 100%;
-    max-width: 1440px;
-    height: 100%;
-
+    max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 24px;
 
-    display: flex;
-    align-items: center;
+    height: 100%;
 
-    min-width: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -126,7 +127,9 @@ img {
 
 .logo {
     font-family: var(--font-heading);
+
     font-size: 1.375rem;
+
     font-weight: 800;
 
     color: var(--text-light);
@@ -195,64 +198,51 @@ img {
 
 
 /* =========================================================
-   NAVIGATION LINKS - DESKTOP
+   NAVIGATION LINKS
+   Desktop defaults
    ========================================================= */
 
 .nav-links {
     display: flex;
+
     align-items: center;
+
     justify-content: flex-end;
 
-    gap: clamp(6px, 0.7vw, 12px);
+    gap: 10px;
 
     flex-wrap: nowrap;
 
     /*
-     * This allows the navigation to use the remaining
-     * horizontal space after the logo.
+     * Allows the navigation to occupy the remaining
+     * space without changing the mobile layout.
      */
-    flex: 1;
+    flex-shrink: 1;
 
     min-width: 0;
-
-    margin-left: 20px;
 }
-
-
-/* =========================================================
-   NORMAL NAV LINKS
-   ========================================================= */
 
 .nav-links a {
     color: var(--text-light);
 
     font-weight: 500;
 
-    /*
-     * Responsive font size.
-     * Prevents the navbar from becoming too large
-     * on smaller desktop screens.
-     */
-    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+    font-size: 0.85rem;
 
     opacity: 0.8;
 
     white-space: nowrap;
-
-    /*
-     * Allows normal links to shrink slightly when needed.
-     */
-    flex-shrink: 1;
 }
 
 .nav-links a:hover {
     opacity: 1;
+
     color: var(--primary);
 }
 
 
 /* =========================================================
-   LOGIN BUTTON
+   LOGIN
    ========================================================= */
 
 .nav-login {
@@ -260,7 +250,7 @@ img {
 
     opacity: 0.9 !important;
 
-    padding: 7px clamp(10px, 1vw, 16px);
+    padding: 8px 16px;
 
     border: 1px solid rgba(255, 255, 255, 0.2);
 
@@ -268,11 +258,9 @@ img {
 
     font-weight: 600;
 
-    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+    font-size: 0.85rem;
 
     white-space: nowrap;
-
-    flex-shrink: 0;
 }
 
 .nav-login:hover {
@@ -285,7 +273,7 @@ img {
 
 
 /* =========================================================
-   PRIMARY CTA - JOIN NETWORK
+   PRIMARY CTA
    ========================================================= */
 
 .nav-cta-primary {
@@ -295,19 +283,17 @@ img {
 
     opacity: 1 !important;
 
-    padding: 8px clamp(12px, 1.2vw, 18px);
+    padding: 8px 18px;
 
     border-radius: var(--radius-full);
 
     font-weight: 600;
 
-    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+    font-size: 0.85rem;
 
     box-shadow: var(--shadow-glow);
 
     white-space: nowrap;
-
-    flex-shrink: 0;
 }
 
 .nav-cta-primary:hover {
@@ -318,7 +304,7 @@ img {
 
 
 /* =========================================================
-   SECONDARY CTA - SIGN UP AS CLIENT
+   SECONDARY CTA
    ========================================================= */
 
 .nav-cta-secondary {
@@ -328,7 +314,7 @@ img {
 
     opacity: 1 !important;
 
-    padding: 8px clamp(10px, 1vw, 16px);
+    padding: 8px 16px;
 
     border: 2px solid var(--primary);
 
@@ -336,11 +322,9 @@ img {
 
     font-weight: 600;
 
-    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+    font-size: 0.85rem;
 
     white-space: nowrap;
-
-    flex-shrink: 0;
 }
 
 .nav-cta-secondary:hover {
@@ -351,7 +335,7 @@ img {
 
 
 /* =========================================================
-   CONTRACTS BUTTON
+   CONTRACTS
    ========================================================= */
 
 .nav-contracts {
@@ -365,7 +349,7 @@ img {
 
     opacity: 0.9 !important;
 
-    padding: 6px clamp(8px, 0.9vw, 12px);
+    padding: 6px 12px;
 
     background: linear-gradient(
         135deg,
@@ -379,11 +363,9 @@ img {
 
     font-weight: 600;
 
-    font-size: clamp(0.72rem, 0.72vw, 0.85rem);
+    font-size: 0.85rem;
 
     white-space: nowrap;
-
-    flex-shrink: 0;
 
     transition: var(--transition-fast);
 }
@@ -769,6 +751,10 @@ img {
 
 /* =========================================================
    MOBILE NAVIGATION
+   max-width: 768px
+
+   IMPORTANT:
+   This preserves your original mobile structure.
    ========================================================= */
 
 @media (max-width: 768px) {
@@ -789,10 +775,6 @@ img {
         display: block;
     }
 
-    /*
-     * Mobile navigation becomes a vertical
-     * slide-down menu.
-     */
     .nav-links {
         position: fixed;
 
@@ -815,39 +797,10 @@ img {
         transition: var(--transition-smooth);
 
         border-bottom: 1px solid var(--border-dark);
-
-        /*
-         * Reset desktop behavior.
-         */
-        margin-left: 0;
-
-        flex: none;
-
-        justify-content: flex-start;
-
-        min-width: auto;
     }
 
     .nav-links.active {
         transform: translateY(0);
-    }
-
-    /*
-     * Restore comfortable mobile text sizes.
-     */
-    .nav-links a {
-        font-size: 1rem;
-
-        flex-shrink: 0;
-    }
-
-    .nav-login,
-    .nav-cta-primary,
-    .nav-cta-secondary,
-    .nav-contracts {
-        font-size: 1rem;
-
-        flex-shrink: 0;
     }
 
     .footer-container {
@@ -883,26 +836,140 @@ img {
 
 
 /* =========================================================
-   TABLET / DESKTOP
+   TABLET / SMALL DESKTOP
+   769px - 1023px
+
+   The mobile menu is gone here, so we carefully compress
+   the navbar without allowing items to overlap.
    ========================================================= */
 
-@media (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 1023px) {
+
+    .nav-container {
+        padding: 0 18px;
+    }
+
+    .logo-badge-img {
+        height: 32px;
+    }
+
+    .logo {
+        gap: 6px;
+    }
+
+    .logo span {
+        font-size: 1.05rem;
+    }
+
+    .nav-links {
+        gap: 5px;
+
+        margin-left: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.68rem;
+    }
+
+    .nav-login {
+        padding: 6px 9px;
+
+        font-size: 0.68rem;
+    }
+
+    .nav-cta-primary {
+        padding: 6px 10px;
+
+        font-size: 0.68rem;
+    }
+
+    .nav-cta-secondary {
+        padding: 6px 9px;
+
+        font-size: 0.68rem;
+
+        border-width: 1px;
+    }
+
+    .nav-contracts {
+        padding: 5px 8px;
+
+        font-size: 0.68rem;
+    }
+}
+
+
+/* =========================================================
+   NORMAL DESKTOP
+   1024px - 1279px
+   ========================================================= */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+
+    .nav-container {
+        max-width: 1400px;
+
+        padding: 0 24px;
+    }
 
     .logo-badge-img {
         height: 36px;
     }
 
     .logo span {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
+    }
+
+    .nav-links {
+        gap: 7px;
+
+        margin-left: 16px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .nav-login {
+        padding: 7px 11px;
+
+        font-size: 0.74rem;
+    }
+
+    .nav-cta-primary {
+        padding: 7px 12px;
+
+        font-size: 0.80rem;
+    }
+
+    .nav-cta-secondary {
+        padding: 7px 11px;
+
+        font-size: 0.80rem;
+
+        border-width: 1px;
+    }
+
+    .nav-contracts {
+        padding: 6px 9px;
+
+        font-size: 0.74rem;
     }
 }
 
 
 /* =========================================================
-   DESKTOP
+   LARGE DESKTOP
+   1280px+
    ========================================================= */
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
+
+    .nav-container {
+        max-width: 1440px;
+
+        padding: 0 32px;
+    }
 
     .logo-badge-img {
         height: 40px;
@@ -912,40 +979,86 @@ img {
         font-size: 1.375rem;
     }
 
-    .nav-container {
-        padding: 0 32px;
+    .nav-links {
+        gap: 9px;
+
+        margin-left: 24px;
+    }
+
+    .nav-links a {
+        font-size: 0.90rem;
+    }
+
+    .nav-login {
+        padding: 8px 14px;
+
+        font-size: 0.85rem;
+    }
+
+    .nav-cta-primary {
+        padding: 8px 16px;
+
+        font-size: 0.82rem;
+    }
+
+    .nav-cta-secondary {
+        padding: 8px 14px;
+
+        font-size: 0.82rem;
+    }
+
+    .nav-contracts {
+        padding: 6px 11px;
+
+        font-size: 0.82rem;
     }
 }
 
 
 /* =========================================================
-   LARGE DESKTOP
-   ========================================================= */
-
-@media (min-width: 1280px) {
-
-    .logo-badge-img {
-        height: 42px;
-    }
-}
-
-
-/* =========================================================
-   EXTRA LARGE DESKTOP
+   VERY LARGE DESKTOP
+   1500px+
    ========================================================= */
 
 @media (min-width: 1500px) {
 
+    .nav-container {
+        max-width: 1600px;
+
+        padding: 0 40px;
+    }
+
     .nav-links {
-        gap: 14px;
+        gap: 12px;
+
+        margin-left: 30px;
     }
 
     .nav-links a {
         font-size: 0.85rem;
     }
 
-    .nav-container {
-        padding-left: 40px;
-        padding-right: 40px;
+    .nav-login {
+        padding: 8px 16px;
+
+        font-size: 0.85rem;
+    }
+
+    .nav-cta-primary {
+        padding: 8px 18px;
+
+        font-size: 0.85rem;
+    }
+
+    .nav-cta-secondary {
+        padding: 8px 16px;
+
+        font-size: 0.85rem;
+    }
+
+    .nav-contracts {
+        padding: 6px 12px;
+
+        font-size: 0.85rem;
     }
 }
