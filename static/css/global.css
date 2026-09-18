@@ -766,6 +766,9 @@ img {
     .logo-badge-img {
         height: 28px;
     }
+    .nav-container {
+        justify-content: space-between;
+    }
 
     .logo {
         gap: 8px;
