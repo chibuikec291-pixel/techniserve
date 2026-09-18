@@ -104,15 +104,13 @@ img {
 
 /* =========================================================
    NAV CONTAINER
-   IMPORTANT:
-   This remains compatible with the original mobile layout.
    ========================================================= */
 
 .nav-container {
     width: 100%;
-    /* max-width: var(--container-max);
-     */
-     max-width: 1440px;
+
+    max-width: 1440px;
+
     margin: 0 auto;
     padding: 0 24px;
 
@@ -121,6 +119,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     min-width: 0;
 }
 
@@ -203,7 +202,7 @@ img {
 
 /* =========================================================
    NAVIGATION LINKS
-   Desktop defaults
+   DESKTOP DEFAULTS
    ========================================================= */
 
 .nav-links {
@@ -217,10 +216,6 @@ img {
 
     flex-wrap: nowrap;
 
-    /*
-     * Allows the navigation to occupy the remaining
-     * space without changing the mobile layout.
-     */
     flex-shrink: 1;
 
     min-width: 0;
@@ -756,31 +751,88 @@ img {
 /* =========================================================
    MOBILE NAVIGATION
    max-width: 768px
-
-   IMPORTANT:
-   This preserves your original mobile structure.
    ========================================================= */
 
 @media (max-width: 768px) {
 
+    /* -------------------------
+       NAV CONTAINER
+       ------------------------- */
+
+    .nav-container {
+        width: 100%;
+
+        height: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 0 24px;
+    }
+
+
+    /* -------------------------
+       LOGO
+       ------------------------- */
+
     .logo-badge-img {
         height: 28px;
-    }
-    .nav-container {
-        justify-content: space-between;
     }
 
     .logo {
         gap: 8px;
+
+        flex-shrink: 0;
     }
 
     .logo span {
         font-size: 1.1rem;
     }
 
+
+    /* -------------------------
+       HAMBURGER TOGGLE
+       ------------------------- */
+
     .menu-toggle {
-        display: block;
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 40px;
+
+        height: 40px;
+
+        margin-left: auto;
+
+        padding: 0;
+
+        background: none;
+
+        border: none;
+
+        color: var(--text-light);
+
+        cursor: pointer;
+
+        flex-shrink: 0;
     }
+
+    .menu-toggle svg {
+        width: 28px;
+
+        height: 28px;
+    }
+
+
+    /* -------------------------
+       MOBILE NAV LINKS
+       ------------------------- */
 
     .nav-links {
         position: fixed;
@@ -791,24 +843,39 @@ img {
 
         width: 100%;
 
-        background: var(--bg-dark);
+        display: flex;
 
         flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
 
         padding: 32px;
 
         gap: 24px;
+
+        background: var(--bg-dark);
 
         transform: translateY(-150%);
 
         transition: var(--transition-smooth);
 
         border-bottom: 1px solid var(--border-dark);
+
+        margin-left: 0;
+
+        flex-shrink: 0;
     }
 
     .nav-links.active {
         transform: translateY(0);
     }
+
+
+    /* -------------------------
+       FOOTER
+       ------------------------- */
 
     .footer-container {
         grid-template-columns: 1fr;
@@ -839,15 +906,18 @@ img {
     .nav-container {
         padding: 0 16px;
     }
+
+    .menu-toggle {
+        width: 40px;
+
+        height: 40px;
+    }
 }
 
 
 /* =========================================================
    TABLET / SMALL DESKTOP
    769px - 1023px
-
-   The mobile menu is gone here, so we carefully compress
-   the navbar without allowing items to overlap.
    ========================================================= */
 
 @media (min-width: 769px) and (max-width: 1023px) {
