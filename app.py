@@ -2,9 +2,7 @@ from datetime import datetime, timedelta, timezone
 import os
 import secrets
 import random
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import resend  # <-- REPLACED SMTP IMPORTS WITH RESEND
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -63,27 +61,22 @@ os.makedirs(os.path.join(UPLOAD_FOLDER, 'contracts'), exist_ok=True)
 os.makedirs(os.path.join(UPLOAD_FOLDER, 'profiles'), exist_ok=True)
 os.makedirs(os.path.join(UPLOAD_FOLDER, 'gallery'), exist_ok=True)
 
-# --- EMAIL CONFIGURATION (GMAIL SMTP) ---
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 465
-SENDER_EMAIL = "chibuikec291@gmail.com"
-SENDER_PASSWORD = "oanyqxubzdcfjkjy"
+# --- EMAIL CONFIGURATION (RESEND) ---
+# Initialize Resend with API key from environment variables
+resend.api_key = os.environ.get("RESEND_API_KEY")
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "noreply@techniserve.ng")
 
 def send_email(recipient_email, subject, html_content):
-    """Universal function to send HTML emails via Gmail SMTP"""
-    msg = MIMEMultipart('alternative')
-    msg['From'] = SENDER_EMAIL
-    msg['To'] = recipient_email
-    msg['Subject'] = subject
-    
-    msg.attach(MIMEText(html_content, 'html'))
-    
+    """Universal function to send HTML emails via Resend"""
     try:
-        server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
-        server.login(SENDER_EMAIL, SENDER_PASSWORD)
-        server.send_message(msg)
-        server.quit()
-        print(f"📧 Email sent to {recipient_email}")
+        params = {
+            "from": f"TECHNISERVE <{SENDER_EMAIL}>",
+            "to": [recipient_email],
+            "subject": subject,
+            "html": html_content
+        }
+        email = resend.Emails.send(params)
+        print(f"📧 Email sent successfully to {recipient_email}")
         return True
     except Exception as e:
         print(f"❌ Email Error: {e}")
@@ -390,7 +383,7 @@ def api_approve_technician(user_id):
             <h2 style="color: #2563EB;">Welcome to TECHNISERVE, {tech.full_name}! 🎉</h2>
             <p>Your account has been <strong style="color: #10B981;">approved</strong> and you are now officially part of our network of verified professionals.</p>
             <p>You can now log in to your dashboard, update your portfolio, and start receiving job requests from clients across Owerri and Imo State.</p>
-            <a href="http://127.0.0.1:5000/login" style="display: inline-block; padding: 12px 24px; background-color: #2563EB; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 20px;">Login to Dashboard</a>
+            <a href="{url_for('login', _external=True)}" style="display: inline-block; padding: 12px 24px; background-color: #2563EB; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 20px;">Login to Dashboard</a>
             <p style="margin-top: 30px; font-size: 12px; color: #64748b;">Best regards,<br>The TECHNISERVE Team</p>
         </div>
         """
