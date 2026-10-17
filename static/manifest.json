@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "TECHNISERVE",
-  "short_name": "TECHNISERVE",
+  "name": "Techniserve",
+  "short_name": "Techniserve",
   "description": "Connect with verified technicians for electrical, plumbing, construction, and more",
   "start_url": "/",
   "display": "standalone",
